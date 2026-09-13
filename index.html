@@ -4,90 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resell Reads | By Students, For Students</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* BRAND COLORS & VARIABLES */
+        /* AESTHETIC BRAND COLORS & VARIABLES */
         :root {
-            --cream: #FDFBF7;
-            --beige: #F5EFEB;
-            --navy: #1B263B;
-            --brown: #8B5A2B;
-            --burgundy: #722F37;
-            --text-main: #333333;
-            --text-light: #666666;
-            --font-heading: 'Merriweather', serif;
+            --cream: #FAF7F2;
+            --beige: #EFE8DF;
+            --navy: #2C363F;
+            --brown: #8A5A44;
+            --burgundy: #6B2D30;
+            --text-main: #3E3E3E;
+            --text-light: #7A7A7A;
+            --font-heading: 'Playfair Display', serif;
             --font-body: 'Outfit', sans-serif;
+            --glass-bg: rgba(239, 232, 223, 0.85);
+            --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
 
         /* GLOBAL STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-body); background-color: var(--cream); color: var(--text-main); line-height: 1.6; }
-        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 1rem; }
-        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        body { font-family: var(--font-body); background-color: var(--cream); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 1rem; font-weight: 600; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         ul { list-style: none; }
         
         /* BUTTONS */
-        .btn { display: inline-block; padding: 10px 20px; font-weight: 500; border-radius: 5px; cursor: pointer; transition: all 0.3s ease; border: none; font-family: var(--font-body); }
-        .btn-navy { background-color: var(--navy); color: var(--cream); }
-        .btn-navy:hover { background-color: var(--brown); }
+        .btn { display: inline-block; padding: 12px 28px; font-weight: 500; border-radius: 30px; cursor: pointer; transition: all 0.3s ease; border: none; font-family: var(--font-body); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-navy { background-color: var(--navy); color: var(--cream); box-shadow: 0 4px 15px rgba(44, 54, 63, 0.2); }
+        .btn-navy:hover { background-color: var(--brown); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(138, 90, 68, 0.3); }
         .btn-burgundy { background-color: var(--burgundy); color: var(--cream); }
         .btn-burgundy:hover { background-color: var(--navy); }
-        .btn-outline { border: 2px solid var(--navy); color: var(--navy); background: transparent; }
+        .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
         .btn-outline:hover { background-color: var(--navy); color: var(--cream); }
 
-        /* HEADER & NAVIGATION */
-        header { background-color: var(--beige); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--burgundy); cursor: pointer; }
-        nav ul { display: flex; gap: 1.5rem; align-items: center; }
-        nav ul li { cursor: pointer; font-weight: 500; }
-        nav ul li:hover { color: var(--burgundy); }
-        .nav-profile { border-left: 1px solid #ccc; padding-left: 1.5rem; font-weight: 600; color: var(--brown); }
+        /* GLASSMORPHIC HEADER */
+        header { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.3); }
+        .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--burgundy); cursor: pointer; letter-spacing: -0.5px; }
+        nav ul { display: flex; gap: 2rem; align-items: center; }
+        nav ul li { cursor: pointer; font-weight: 500; font-size: 0.95rem; position: relative; }
+        nav ul li::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--burgundy); transition: width 0.3s ease; }
+        nav ul li:hover::after { width: 100%; }
+        .nav-profile { border-left: 1px solid #d4ccc3; padding-left: 2rem; font-weight: 600; color: var(--brown); display: flex; align-items: center; gap: 0.5rem; }
 
-        /* PAGE SECTIONS (For Single Page App logic) */
-        .page { display: none; padding: 4rem 5%; min-height: 80vh; }
-        .page.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* PAGE SECTIONS */
+        .page { display: none; padding: 5rem 5%; min-height: 80vh; animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         /* HERO SECTION */
-        .hero { text-align: center; padding: 6rem 5%; background: linear-gradient(rgba(245, 239, 235, 0.9), rgba(245, 239, 235, 0.9)), url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1000&q=80') center/cover; border-bottom: 2px solid var(--brown); }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--navy); }
-        .hero h3 { font-style: italic; color: var(--burgundy); margin-bottom: 1rem; }
-        .hero p { max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem; }
+        .hero { text-align: center; padding: 8rem 5%; background: linear-gradient(rgba(239, 232, 223, 0.85), rgba(250, 247, 242, 1)), url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1600&q=80') center/cover fixed; border-radius: 0 0 40px 40px; margin-top: -80px; padding-top: 140px; }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 0.5rem; color: var(--navy); letter-spacing: -1px; }
+        .hero h3 { font-style: italic; color: var(--burgundy); margin-bottom: 1.5rem; font-weight: 400; font-size: 1.5rem; }
+        .hero p { max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.15rem; color: var(--text-main); }
         .hero .btn-group { display: flex; gap: 1rem; justify-content: center; }
 
         /* GRID LAYOUTS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
         
-        /* CARDS */
-        .card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.03); border: 1px solid #eaeaea; text-align: center; }
-        .book-card { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left; position: relative; border-bottom: 4px solid var(--navy); }
-        .book-cover { width: 100%; height: 250px; background-color: var(--beige); border-radius: 4px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: var(--brown); font-family: var(--font-heading); }
-        .tag { position: absolute; top: 10px; right: 10px; background: var(--burgundy); color: #fff; font-size: 0.8rem; padding: 3px 8px; border-radius: 3px; }
-        .book-price { margin: 1rem 0; font-weight: 600; color: var(--navy); }
-        .book-price strike { color: var(--text-light); font-size: 0.9rem; margin-right: 0.5rem; font-weight: 400; }
+        /* AESTHETIC CARDS */
+        .card { background: #ffffff; padding: 2.5rem; border-radius: 16px; box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.02); text-align: center; transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        
+        /* BOOK CARDS WITH IMAGES */
+        .book-card { background: #ffffff; padding: 1.5rem; border-radius: 16px; box-shadow: var(--shadow-soft); text-align: left; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .book-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .book-cover { width: 100%; height: 320px; object-fit: cover; border-radius: 8px; margin-bottom: 1.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .tag { position: absolute; top: 15px; right: 15px; background: rgba(107, 45, 48, 0.9); backdrop-filter: blur(4px); color: #fff; font-size: 0.75rem; padding: 4px 12px; border-radius: 20px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; z-index: 2; }
+        .book-info { flex-grow: 1; }
+        .book-title { font-size: 1.2rem; margin-bottom: 0.2rem; line-height: 1.3; }
+        .book-author { color: var(--text-light); font-size: 0.95rem; margin-bottom: 1rem; }
+        .book-price { margin: 1rem 0; font-weight: 600; color: var(--navy); font-size: 1.1rem; display: flex; align-items: baseline; gap: 0.5rem; }
+        .book-price strike { color: #a0a0a0; font-size: 0.9rem; font-weight: 400; }
+        .softcopy-note { font-size: 0.85rem; color: var(--brown); background: var(--beige); padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 1rem; }
         
         /* FORMS */
         .form-group { margin-bottom: 1.5rem; text-align: left; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-        .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: var(--font-body); }
-        textarea.form-control { resize: vertical; height: 100px; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.95rem; color: var(--navy); }
+        .form-control { width: 100%; padding: 12px 15px; border: 1.5px solid #e0d8d0; border-radius: 8px; font-family: var(--font-body); background: #fafafa; transition: border-color 0.3s ease; }
+        .form-control:focus { outline: none; border-color: var(--brown); background: #ffffff; }
+        textarea.form-control { resize: vertical; height: 120px; }
         
-        /* PROFILE / DASHBOARD */
-        .dashboard-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem; background: var(--beige); padding: 2rem; border-radius: 10px; }
-        .avatar { font-size: 4rem; background: #fff; height: 100px; width: 100px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 3px solid var(--brown); }
-        .preferences-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
-        .pref-checkbox { display: flex; align-items: center; gap: 0.5rem; }
+        /* DASHBOARD PROFILE */
+        .dashboard-header { display: flex; align-items: center; gap: 2.5rem; margin-bottom: 3rem; background: #ffffff; padding: 3rem; border-radius: 20px; box-shadow: var(--shadow-soft); border-left: 6px solid var(--brown); }
+        .avatar { font-size: 4.5rem; background: var(--beige); height: 110px; width: 110px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: inset 0 2px 10px rgba(0,0,0,0.05); }
+        .preferences-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .pref-checkbox { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; cursor: pointer; }
+        .pref-checkbox input { accent-color: var(--brown); width: 16px; height: 16px; }
 
         /* FOOTER */
-        footer { background-color: var(--navy); color: var(--cream); text-align: center; padding: 3rem 5%; margin-top: 4rem; }
-        footer .social { color: var(--beige); margin: 1rem 0; display: block; }
-        footer p.tagline { font-family: var(--font-heading); font-style: italic; margin-top: 1rem; color: var(--brown); }
+        footer { background-color: var(--navy); color: var(--cream); text-align: center; padding: 4rem 5%; margin-top: 2rem; border-radius: 40px 40px 0 0; }
+        footer h2 { color: var(--beige); font-family: var(--font-heading); }
+        footer .social { color: var(--beige); margin: 1.5rem 0; display: inline-block; font-weight: 500; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; }
+        footer .social:hover { background: var(--burgundy); border-color: var(--burgundy); }
+        footer p.tagline { font-family: var(--font-heading); font-style: italic; margin-top: 2rem; color: #a3b1c6; opacity: 0.8; }
+        .footer-links a { margin: 0 10px; opacity: 0.8; }
+        .footer-links a:hover { opacity: 1; color: var(--brown); }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            nav ul { display: none; } /* In a real app, add a hamburger menu here */
-            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero { padding-top: 120px; padding-bottom: 4rem; }
             .hero .btn-group { flex-direction: column; }
+            .dashboard-header { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -95,7 +115,7 @@
 
     <!-- HEADER -->
     <header>
-        <div class="logo" onclick="showPage('home')">Resell Reads</div>
+        <div class="logo" onclick="showPage('home')">Resell Reads.</div>
         <nav>
             <ul>
                 <li onclick="showPage('home')">Home</li>
@@ -104,55 +124,70 @@
                 <li onclick="showPage('reviews')">Reviews</li>
                 <li onclick="showPage('about')">About Us</li>
                 <li onclick="showPage('contact')">Contact</li>
-                <li class="nav-profile" onclick="showPage('profile')">📚 My Profile</li>
+                <li class="nav-profile" onclick="showPage('profile')">
+                    <span style="font-size: 1.2rem;">🦉</span> My Profile
+                </li>
             </ul>
         </nav>
     </header>
 
     <!-- HOME PAGE -->
-    <section id="home" class="page active">
+    <section id="home" class="page active" style="padding-top: 0;">
         <div class="hero">
-            <h1>RESELL READS</h1>
+            <h1>Resell Reads</h1>
             <h3>"Read More. Spend Less."</h3>
-            <p>Books by students, for students. We are a student-run bookstore and reading community making books more accessible and affordable for readers.</p>
+            <p>Books by students, for students. We are a student-run bookstore and reading community making stories more accessible and affordable for everyone.</p>
             <div class="btn-group">
-                <button class="btn btn-navy" onclick="showPage('shop')">SHOP BOOKS</button>
-                <button class="btn btn-outline" onclick="showPage('library')">BROWSE THE LIBRARY</button>
+                <button class="btn btn-navy" onclick="showPage('shop')">Shop Books</button>
+                <button class="btn btn-outline" onclick="showPage('library')">Browse Library</button>
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 4rem;">
-            <h2>WHAT WE OFFER</h2>
+        <div style="text-align: center; margin-top: 5rem; padding: 0 5%;">
+            <h2>What We Offer</h2>
             <div class="grid">
-                <div class="card">📖<br><strong>Brand-New Books</strong></div>
-                <div class="card">📚<br><strong>Pre-Loved Books</strong></div>
-                <div class="card">💻<br><strong>Affordable Softcopies</strong></div>
-                <div class="card">🔄<br><strong>Community Book Rentals</strong></div>
-                <div class="card">💰<br><strong>Student-Friendly Prices</strong></div>
-                <div class="card">📦<br><strong>Secure Packaging</strong></div>
+                <div class="card"><h1 style="font-size: 2.5rem; margin-bottom: 10px;">📖</h1><strong>Brand-New Books</strong><p style="font-size: 0.9rem; color: var(--text-light); margin-top: 10px;">Crisp pages, untouched spines.</p></div>
+                <div class="card"><h1 style="font-size: 2.5rem; margin-bottom: 10px;">📚</h1><strong>Pre-Loved Books</strong><p style="font-size: 0.9rem; color: var(--text-light); margin-top: 10px;">Stories that have been loved before.</p></div>
+                <div class="card"><h1 style="font-size: 2.5rem; margin-bottom: 10px;">🔄</h1><strong>Community Rentals</strong><p style="font-size: 0.9rem; color: var(--text-light); margin-top: 10px;">Borrow, read, and return.</p></div>
             </div>
         </div>
 
-        <div style="margin-top: 5rem;">
-            <h2 style="text-align: center;">YOUR NEXT READ IS WAITING.</h2>
+        <div style="margin-top: 6rem; padding: 0 5%;">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Your Next Read is Waiting</h2>
             <div class="grid">
-                <!-- Sample Book Card -->
+                <!-- Book Card 1 -->
                 <div class="book-card">
                     <span class="tag">Pre-Loved</span>
-                    <div class="book-cover">Cover Image</div>
-                    <h4>The Secret History</h4>
-                    <p style="color: var(--text-light); font-size: 0.9rem;">Donna Tartt</p>
-                    <div class="book-price"><strike>₹599</strike> ₹299 <br><span style="font-size: 0.85rem; font-weight: normal;">Softcopy: ₹49</span></div>
+                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80" alt="The Secret History" class="book-cover">
+                    <div class="book-info">
+                        <h4 class="book-title">The Secret History</h4>
+                        <p class="book-author">Donna Tartt</p>
+                        <div class="softcopy-note">Softcopy available: ₹49</div>
+                        <div class="book-price">₹299 <strike>₹599</strike></div>
+                    </div>
                     <a href="https://instagram.com/resell.reads_67" target="_blank" class="btn btn-navy" style="width: 100%; text-align: center;">DM TO ORDER</a>
                 </div>
-                <!-- Sample Book Card -->
+                <!-- Book Card 2 -->
                 <div class="book-card">
-                    <span class="tag" style="background: var(--brown);">New</span>
-                    <div class="book-cover">Cover Image</div>
-                    <h4>Fourth Wing</h4>
-                    <p style="color: var(--text-light); font-size: 0.9rem;">Rebecca Yarros</p>
-                    <div class="book-price"><strike>₹899</strike> ₹650 <br><span style="font-size: 0.85rem; font-weight: normal;">Softcopy: N/A</span></div>
-                    <a href="https://instagram.com/resell.reads_67" target="_blank" class="btn btn-navy" style="width: 100%; text-align: center;">DM TO ORDER</a>
+                    <span class="tag" style="background: rgba(138, 90, 68, 0.9);">New</span>
+                    <img src="https://images.unsplash.com/photo-1618666012174-83b441c0bc76?auto=format&fit=crop&w=600&q=80" alt="Fourth Wing" class="book-cover">
+                    <div class="book-info">
+                        <h4 class="book-title">Fourth Wing</h4>
+                        <p class="book-author">Rebecca Yarros</p>
+                        <div class="book-price">₹650 <strike>₹899</strike></div>
+                    </div>
+                    <a href="https://instagram.com/resell.reads_67" target="_blank" class="btn btn-navy" style="width: 100%; text-align: center; margin-top: auto;">DM TO ORDER</a>
+                </div>
+                <!-- Book Card 3 -->
+                <div class="book-card">
+                    <span class="tag">Pre-Loved</span>
+                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80" alt="Atomic Habits" class="book-cover">
+                    <div class="book-info">
+                        <h4 class="book-title">Atomic Habits</h4>
+                        <p class="book-author">James Clear</p>
+                        <div class="book-price">₹450 <strike>₹799</strike></div>
+                    </div>
+                    <a href="https://instagram.com/resell.reads_67" target="_blank" class="btn btn-navy" style="width: 100%; text-align: center; margin-top: auto;">DM TO ORDER</a>
                 </div>
             </div>
         </div>
@@ -160,149 +195,182 @@
 
     <!-- SHOP PAGE -->
     <section id="shop" class="page">
-        <h1 style="text-align: center;">THE BOOKSHOP</h1>
-        <p style="text-align: center; margin-bottom: 2rem;">Filter by: <select class="form-control" style="width: auto; display: inline-block;"><option>All Books</option><option>New Books</option><option>Pre-Loved Books</option><option>Thrillers</option><option>Classics</option><option>Student Picks</option></select></p>
+        <h1 style="text-align: center; font-size: 3rem;">The Bookshop</h1>
+        <p style="text-align: center; margin-bottom: 3rem; color: var(--text-light);">Curated reads at student-friendly prices.</p>
+        
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <select class="form-control" style="width: 250px; display: inline-block; box-shadow: var(--shadow-soft);">
+                <option>All Books</option>
+                <option>New Books</option>
+                <option>Pre-Loved Books</option>
+                <option>Classics</option>
+                <option>Thrillers</option>
+            </select>
+        </div>
         
         <div class="grid">
-            <!-- Reuse book cards for demo -->
+            <!-- Shop Book 1 -->
             <div class="book-card">
                 <span class="tag">Pre-Loved</span>
-                <div class="book-cover">Cover Image</div>
-                <h4>Pride and Prejudice</h4>
-                <p>Jane Austen</p>
-                <p style="font-size: 0.85rem; color: green;">Condition: Good</p>
-                <div class="book-price"><strike>₹250</strike> ₹120</div>
-                <a href="#" class="btn btn-navy" style="width: 100%; text-align: center;">DM TO ORDER</a>
+                <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=600&q=80" alt="Pride and Prejudice" class="book-cover">
+                <div class="book-info">
+                    <h4 class="book-title">Pride and Prejudice</h4>
+                    <p class="book-author">Jane Austen</p>
+                    <p style="font-size: 0.85rem; color: #4CAF50; font-weight: 500; margin-bottom: 0.5rem;">Condition: Good</p>
+                    <div class="book-price">₹120 <strike>₹250</strike></div>
+                </div>
+                <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">DM TO ORDER</a>
             </div>
+            
+            <!-- Shop Book 2 -->
             <div class="book-card">
-                <span class="tag" style="background: var(--brown);">New</span>
-                <div class="book-cover">Cover Image</div>
-                <h4>Atomic Habits</h4>
-                <p>James Clear</p>
-                <p style="font-size: 0.85rem; color: green;">Condition: Brand New</p>
-                <div class="book-price"><strike>₹799</strike> ₹450</div>
-                <a href="#" class="btn btn-navy" style="width: 100%; text-align: center;">DM TO ORDER</a>
+                <span class="tag" style="background: rgba(138, 90, 68, 0.9);">New</span>
+                <img src="https://images.unsplash.com/photo-1587876931567-564ce588bfbd?auto=format&fit=crop&w=600&q=80" alt="The Hound of the Baskervilles" class="book-cover">
+                <div class="book-info">
+                    <h4 class="book-title">The Hound of the Baskervilles</h4>
+                    <p class="book-author">Arthur Conan Doyle</p>
+                    <p style="font-size: 0.85rem; color: #4CAF50; font-weight: 500; margin-bottom: 0.5rem;">Condition: Brand New</p>
+                    <div class="book-price">₹150 <strike>₹299</strike></div>
+                </div>
+                <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">DM TO ORDER</a>
             </div>
         </div>
     </section>
 
     <!-- LIBRARY PAGE -->
     <section id="library" class="page">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <h1>THE RESELL READS LIBRARY</h1>
-            <h3>"Borrow a book. Read it. Return it. Let someone else discover it."</h3>
-            <p style="max-width: 600px; margin: 1rem auto;">Our community library allows readers to rent books owned by other members of the Resell Reads community.</p>
-            <div style="background: var(--beige); display: inline-block; padding: 1rem 2rem; border-radius: 8px; margin-top: 1rem;">
-                <strong>Rental Pricing:</strong><br>
-                ₹45 per book / week <br>
-                <span style="font-size: 0.9rem;">(₹1 per additional day after due date)</span>
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h1 style="font-size: 3rem;">The Library</h1>
+            <h3 style="font-weight: 400; color: var(--text-light);">"Borrow a book. Read it. Return it."</h3>
+            <p style="max-width: 600px; margin: 1.5rem auto;">Rent books owned by other members of the Resell Reads community.</p>
+            
+            <div style="background: #ffffff; display: inline-block; padding: 1.5rem 3rem; border-radius: 12px; box-shadow: var(--shadow-soft); margin-top: 1rem; border: 1px solid var(--beige);">
+                <strong style="color: var(--navy); font-size: 1.2rem;">Rental Pricing</strong><br>
+                <span style="font-size: 1.5rem; color: var(--burgundy); font-weight: 600;">₹45</span> <span style="color: var(--text-light);">per week</span><br>
+                <span style="font-size: 0.85rem; color: var(--text-light);">(₹1 per additional day after due date)</span>
             </div>
         </div>
 
-        <div class="grid" style="margin-bottom: 4rem;">
+        <div class="grid" style="margin-bottom: 5rem;">
             <div class="book-card">
-                <div class="book-cover">Cover Image</div>
-                <h4>A Little Life</h4>
-                <p>Hanya Yanagihara</p>
-                <p style="font-size: 0.85rem; color: green;">Availability: Available</p>
-                <div class="book-price">₹45 / week</div>
+                <img src="https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=600&q=80" alt="A Little Life" class="book-cover">
+                <div class="book-info">
+                    <h4 class="book-title">A Little Life</h4>
+                    <p class="book-author">Hanya Yanagihara</p>
+                    <p style="font-size: 0.85rem; color: #4CAF50; font-weight: 500; background: #e8f5e9; display: inline-block; padding: 4px 10px; border-radius: 4px;">Available Now</p>
+                    <div class="book-price" style="color: var(--burgundy);">₹45 / week</div>
+                </div>
                 <button class="btn btn-burgundy" style="width: 100%;">RENT THIS BOOK</button>
             </div>
         </div>
 
-        <hr style="border: none; border-top: 1px solid #ccc; margin: 4rem 0;">
-
-        <div style="max-width: 600px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-            <h2>LIST YOUR BOOK</h2>
-            <p style="margin-bottom: 1.5rem;">Have books sitting on your shelf? List them with Resell Reads and let another reader enjoy them. Your bookshelf could be someone else's next adventure!</p>
+        <div style="max-width: 700px; margin: 0 auto; background: #ffffff; padding: 3rem; border-radius: 20px; box-shadow: var(--shadow-hover);">
+            <h2 style="text-align: center; margin-bottom: 1rem;">List Your Book</h2>
+            <p style="text-align: center; margin-bottom: 2.5rem; color: var(--text-light);">Your bookshelf could be someone else's next adventure. List your idle books and earn a share of the rental fee.</p>
             <form>
-                <div class="form-group"><label>Name / Username</label><input type="text" class="form-control"></div>
-                <div class="form-group"><label>Book Title & Author</label><input type="text" class="form-control"></div>
-                <div class="form-group"><label>Condition</label><select class="form-control"><option>Like New</option><option>Good</option><option>Heavily Read</option></select></div>
-                <button type="button" class="btn btn-navy">SUBMIT LISTING</button>
-                <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-light);">* Resell Reads coordinates the rental, and you receive your agreed share of the fee.</p>
+                <div class="form-group"><label>Name / Username</label><input type="text" class="form-control" placeholder="How should we call you?"></div>
+                <div class="form-group"><label>Book Title & Author</label><input type="text" class="form-control" placeholder="e.g. Dune by Frank Herbert"></div>
+                <div class="form-group">
+                    <label>Condition</label>
+                    <select class="form-control">
+                        <option>Like New</option>
+                        <option>Good (Minor wear)</option>
+                        <option>Heavily Read (Dog-eared, annotations)</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-navy" style="width: 100%; margin-top: 1rem;">SUBMIT LISTING</button>
             </form>
         </div>
     </section>
 
     <!-- REVIEWS PAGE -->
     <section id="reviews" class="page">
-        <h1 style="text-align: center;">WHAT OUR READERS SAY</h1>
-        <p style="text-align: center; font-size: 0.9rem; color: var(--text-light); margin-bottom: 3rem;">* Reviews are shared with permission from our readers.</p>
+        <h1 style="text-align: center; font-size: 3rem;">Reader Love</h1>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 4rem;">* Shared with permission from our amazing community.</p>
         <div class="grid">
-            <div class="card" style="border-left: 4px solid var(--burgundy);">
-                <p><i>"Got my copy of Dune for such a steal! The packaging was so cute, and it arrived in two days. Absolutely love what you guys are doing!"</i></p>
-                <h4 style="margin-top: 1rem; font-size: 1rem;">- @bookworm_riya</h4>
+            <div class="card" style="border-top: 4px solid var(--burgundy); text-align: left;">
+                <div style="font-size: 2rem; color: var(--beige); margin-bottom: -15px;">"</div>
+                <p style="font-size: 1.1rem; color: var(--navy); font-style: italic;">Got my copy of Dune for such a steal! The packaging was so cute, and it arrived in two days. Absolutely love what you guys are doing!</p>
+                <div style="margin-top: 2rem; display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 40px; height: 40px; background: var(--beige); border-radius: 50%; display: flex; align-items: center; justify-content: center;">✨</div>
+                    <h4 style="margin: 0; font-size: 1rem;">@bookworm_riya</h4>
+                </div>
             </div>
-            <div class="card" style="border-left: 4px solid var(--navy);">
-                <p><i>"The community library feature is brilliant. I rented a thriller for a week, read it, and returned it without feeling guilty about shelf space."</i></p>
-                <h4 style="margin-top: 1rem; font-size: 1rem;">- @sam_reads</h4>
+            <div class="card" style="border-top: 4px solid var(--brown); text-align: left;">
+                <div style="font-size: 2rem; color: var(--beige); margin-bottom: -15px;">"</div>
+                <p style="font-size: 1.1rem; color: var(--navy); font-style: italic;">The community library feature is brilliant. I rented a thriller for a week, read it, and returned it without feeling guilty about shelf space.</p>
+                <div style="margin-top: 2rem; display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 40px; height: 40px; background: var(--beige); border-radius: 50%; display: flex; align-items: center; justify-content: center;">☕</div>
+                    <h4 style="margin: 0; font-size: 1rem;">@sam_reads</h4>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- ABOUT US PAGE -->
     <section id="about" class="page">
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <h1>BUILT BY READERS.</h1>
-            <h3 style="color: var(--burgundy);">Student-run. Reader-driven.</h3>
-            <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 2rem;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; background: #ffffff; padding: 4rem; border-radius: 20px; box-shadow: var(--shadow-soft);">
+            <h1 style="font-size: 3.5rem;">Built by Readers.</h1>
+            <h3 style="color: var(--burgundy); font-family: var(--font-body); font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem;">Student-run. Reader-driven.</h3>
+            
+            <div style="width: 60px; height: 3px; background: var(--brown); margin: 0 auto 2rem;"></div>
+            
+            <p style="font-size: 1.15rem; line-height: 1.9; color: var(--text-main); text-align: justify;">
                 Resell Reads is a student-run bookstore and reading community created to make reading more accessible and affordable.<br><br>
-                We sell both brand-new and pre-loved books, offer affordable softcopies, and are building a community library where books can move from one reader to another.<br><br>
-                We started small, but our goal is simple: help more people discover great books without having to spend a fortune.<br><br>
-                <strong>For students. By students.</strong>
+                We sell both brand-new and pre-loved books, offer affordable softcopies, and are building a community library where books can move from one reader to another, rather than collecting dust on a shelf.<br><br>
+                We started small, but our goal is simple: help more people discover great books without having to spend a fortune.
             </p>
+            <h4 style="margin-top: 3rem; font-size: 1.5rem; color: var(--navy); font-style: italic;">For students. By students.</h4>
         </div>
     </section>
 
     <!-- CONTACT PAGE -->
     <section id="contact" class="page">
-        <div style="max-width: 600px; margin: 0 auto;">
-            <h1 style="text-align: center;">LET'S TALK BOOKS.</h1>
-            <p style="text-align: center; margin-bottom: 2rem;">Find us on Instagram: <a href="https://instagram.com/resell.reads_67" style="color: var(--burgundy); font-weight: bold;">@resell.reads_67</a></p>
+        <div style="max-width: 700px; margin: 0 auto;">
+            <h1 style="text-align: center; font-size: 3rem;">Let's Talk Books.</h1>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem;">Find us on Instagram: <a href="https://instagram.com/resell.reads_67" style="color: var(--burgundy); font-weight: 600; text-decoration: underline;">@resell.reads_67</a></p>
             
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap;">
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem; flex-wrap: wrap;">
                 <button class="btn btn-navy">DM TO ORDER</button>
-                <button class="btn btn-burgundy">ASK ABOUT A RENTAL</button>
-                <button class="btn btn-outline" onclick="showPage('library')">LIST A BOOK</button>
+                <button class="btn btn-burgundy">ASK ABOUT RENTALS</button>
             </div>
 
-            <form class="card">
-                <h3 style="margin-bottom: 1.5rem;">Send us a message</h3>
+            <form class="card" style="padding: 3rem; text-align: left;">
+                <h3 style="margin-bottom: 2rem; font-size: 1.8rem;">Drop a message</h3>
                 <div class="form-group"><label>Name / Alias</label><input type="text" class="form-control"></div>
                 <div class="form-group"><label>Instagram Username (Optional)</label><input type="text" class="form-control"></div>
-                <div class="form-group"><label>Message</label><textarea class="form-control"></textarea></div>
-                <button type="button" class="btn btn-navy" style="width: 100%;">SEND MESSAGE</button>
+                <div class="form-group"><label>What's on your mind?</label><textarea class="form-control"></textarea></div>
+                <button type="button" class="btn btn-navy" style="width: 100%; margin-top: 1rem; padding: 15px;">SEND MESSAGE</button>
             </form>
         </div>
     </section>
 
-    <!-- PROFILE / DASHBOARD PAGE (Mockup) -->
+    <!-- PROFILE / DASHBOARD PAGE -->
     <section id="profile" class="page">
         <div class="dashboard-header">
             <div class="avatar">🦉</div>
             <div>
-                <h1>WELCOME BACK, NIGHTOWL 📚</h1>
-                <p>Member since 2024 | Reader Account</p>
+                <h1 style="margin-bottom: 5px;">Welcome Back, Nightowl</h1>
+                <p style="color: var(--text-light); font-weight: 500;">Member since 2024 &nbsp;|&nbsp; Reader Account</p>
             </div>
         </div>
 
-        <div class="grid" style="align-items: start;">
+        <div class="grid" style="align-items: start; grid-template-columns: 1fr 2fr;">
             <!-- Left Column: Navigation & Preferences -->
-            <div>
-                <div class="card" style="margin-bottom: 2rem; text-align: left;">
-                    <h3>My Dashboard</h3>
-                    <ul style="line-height: 2; color: var(--navy); font-weight: 500;">
-                        <li><a href="#">Your Rentals (1 active)</a></li>
-                        <li><a href="#">Your Orders</a></li>
-                        <li><a href="#">Wishlist (4 items)</a></li>
-                        <li><a href="#">Account Settings (Privacy First)</a></li>
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div class="card" style="text-align: left; padding: 2rem;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem;">Dashboard</h3>
+                    <ul style="line-height: 2.5; font-weight: 500;">
+                        <li><a href="#" style="color: var(--burgundy);">📚 Your Rentals (1 active)</a></li>
+                        <li><a href="#">📦 Your Orders</a></li>
+                        <li><a href="#">❤️ Wishlist (4 items)</a></li>
+                        <li><a href="#">⚙️ Account Settings</a></li>
                     </ul>
                 </div>
                 
-                <div class="card" style="text-align: left;">
-                    <h3>Reading Preferences</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">Help us personalize your "Picked for You" section.</p>
+                <div class="card" style="text-align: left; padding: 2rem;">
+                    <h3 style="font-size: 1.4rem;">Reading Profile</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.5rem;">Personalize your recommendations.</p>
                     <div class="preferences-grid">
                         <label class="pref-checkbox"><input type="checkbox" checked> Thriller</label>
                         <label class="pref-checkbox"><input type="checkbox" checked> Classics</label>
@@ -315,25 +383,30 @@
 
             <!-- Right Column: Recommendations & Rentals -->
             <div>
-                <h2 style="margin-bottom: 1rem;">Because you like Thriller + Classics 👀</h2>
-                <div class="grid" style="margin-top: 0;">
+                <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Picked for you 👀</h2>
+                <p style="color: var(--text-light); margin-top: -15px; margin-bottom: 2rem;">Because you like Thriller + Classics.</p>
+                
+                <div class="grid" style="margin-top: 0; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
                     <div class="book-card">
-                        <div class="book-cover">Cover Image</div>
-                        <h4>The Hound of the Baskervilles</h4>
-                        <div class="book-price">₹150 (Pre-Loved)</div>
+                        <img src="https://images.unsplash.com/photo-1604866730898-7cb7cc20f78c?auto=format&fit=crop&w=500&q=80" alt="The Da Vinci Code" class="book-cover" style="height: 250px;">
+                        <h4 class="book-title" style="font-size: 1.1rem;">The Da Vinci Code</h4>
+                        <div class="book-price" style="font-size: 1rem;">₹45 / week (Rental)</div>
                     </div>
                     <div class="book-card">
-                        <div class="book-cover">Cover Image</div>
-                        <h4>The Da Vinci Code</h4>
-                        <div class="book-price">₹45 / week (Rental)</div>
+                        <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=500&q=80" alt="Pride and Prejudice" class="book-cover" style="height: 250px;">
+                        <h4 class="book-title" style="font-size: 1.1rem;">Pride & Prejudice</h4>
+                        <div class="book-price" style="font-size: 1rem;">₹120 (Pre-Loved)</div>
                     </div>
                 </div>
 
-                <h2 style="margin-top: 3rem; margin-bottom: 1rem; color: var(--burgundy);">Current Rentals</h2>
-                <div class="card" style="text-align: left; border-left: 4px solid var(--navy);">
-                    <h4>The Picture of Dorian Gray</h4>
-                    <p><strong>Rental Period:</strong> 12 Oct - 19 Oct</p>
-                    <p><strong>Status:</strong> <span style="color: #8B5A2B;">Due in 3 days</span></p>
+                <h2 style="margin-top: 4rem; margin-bottom: 1.5rem; color: var(--burgundy); font-size: 1.8rem;">Current Rentals</h2>
+                <div class="card" style="text-align: left; border-left: 5px solid var(--brown); display: flex; align-items: center; gap: 2rem;">
+                    <div style="width: 80px; height: 110px; background: url('https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=200&q=80') center/cover; border-radius: 6px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+                    <div>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">The Picture of Dorian Gray</h4>
+                        <p style="color: var(--text-main); font-size: 0.95rem;"><strong>Period:</strong> 12 Oct - 19 Oct</p>
+                        <p style="margin-top: 5px;"><strong style="color: var(--burgundy); background: #fce4e4; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem;">Due in 3 days</strong></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -341,30 +414,27 @@
 
     <!-- FOOTER -->
     <footer>
-        <h2>RESELL READS</h2>
-        <p>"Read More. Spend Less."</p>
-        <p style="margin: 1.5rem 0;">
-            <a href="#" onclick="showPage('shop')">Shop Books</a> | 
+        <h2 style="font-size: 2rem; margin-bottom: 5px;">Resell Reads.</h2>
+        <p style="font-family: var(--font-body); font-weight: 300;">"Read More. Spend Less."</p>
+        
+        <p class="footer-links" style="margin: 2.5rem 0; font-size: 0.95rem;">
+            <a href="#" onclick="showPage('shop')">Shop</a> | 
             <a href="#" onclick="showPage('library')">Library</a> | 
             <a href="#" onclick="showPage('reviews')">Reviews</a> | 
             <a href="#" onclick="showPage('about')">About Us</a> | 
             <a href="#" onclick="showPage('contact')">Contact</a>
         </p>
-        <a href="https://instagram.com/resell.reads_67" target="_blank" class="social">Instagram: @resell.reads_67</a>
+        
+        <a href="https://instagram.com/resell.reads_67" target="_blank" class="social">Follow on Instagram @resell.reads_67</a>
         <p class="tagline">Great stories. Better prices. Happy readers.</p>
     </footer>
 
-    <!-- SCRIPT FOR BASIC NAVIGATION -->
+    <!-- SCRIPT FOR NAVIGATION -->
     <script>
         function showPage(pageId) {
-            // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-            
-            // Show the selected page
             document.getElementById(pageId).classList.add('active');
-            
-            // Scroll to top smoothly
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
