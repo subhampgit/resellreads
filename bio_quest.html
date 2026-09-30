@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioSphere — Five Kingdom Quest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            card: '#0a1220',
+                            emerald: '#10b981',
+                            cyan: '#06b6d4',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            indigo: '#6366f1',
+                            violet: '#8b5cf6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.16) 0px, transparent 55%),
+                radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.14) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.14) 0px, transparent 55%),
+                radial-gradient(at 50% 50%, rgba(10, 18, 32, 0.85) 0px, #030712 100%);
+            min-height: 100vh;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(10, 18, 32, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 35px rgba(16, 185, 129, 0.05);
+        }
+
+        .glass-card-subtle {
+            background: rgba(16, 26, 46, 0.65);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .fade-out {
+            animation: fadeOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0) scale(1); }
+            to { opacity: 0; transform: translateY(-8px) scale(0.99); }
+        }
+
+        .option-card {
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .option-card:hover:not(:disabled) {
+            transform: translateY(-2px);
+            border-color: rgba(52, 211, 153, 0.65);
+            background: rgba(16, 185, 129, 0.09);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15);
+        }
+
+        .glow-correct {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
+        }
+        .glow-incorrect {
+            box-shadow: 0 0 22px rgba(244, 63, 94, 0.25);
+        }
+
+        .designer-pill {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .designer-pill:hover {
+            border-color: rgba(52, 211, 153, 0.5);
+            background: rgba(16, 185, 129, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Custom scrollbars */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(3, 7, 18, 0.5); }
+        ::-webkit-scrollbar-thumb { background: rgba(52, 211, 153, 0.3); border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(52, 211, 153, 0.6); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen relative font-sans antialiased select-none text-slate-100">
+
+    <header class="w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-md px-4 sm:px-6 py-3.5 flex items-center justify-between sticky top-0 z-40">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-indigo-500 p-[1.5px] shadow-lg shadow-emerald-500/20 flex-shrink-0">
+                <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-lg font-bold text-emerald-400">
+                    🧬
+                </div>
+            </div>
+            <div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">W.W.A. CES</span>
+                    <span class="text-xs text-slate-400 hidden sm:inline">• Five Kingdom Classification</span>
+                </div>
+                <h1 class="text-sm sm:text-base font-bold tracking-tight text-white font-display">
+                    W W A Cossipore English School
+                </h1>
+            </div>
+        </div>
+
+        <!-- Presenter Header Controls -->
+        <div class="flex items-center gap-2 sm:gap-3">
+            <!-- Reset Button (Visible during quiz) -->
+            <button id="inQuizResetBtn" onclick="openResetModal()" class="hidden px-3 py-1.5 rounded-xl border border-rose-500/30 bg-rose-950/40 hover:bg-rose-500/20 text-rose-300 text-xs font-semibold transition flex items-center gap-1.5 shadow-sm" title="Reset quiz back to question 1">
+                <span>🔄</span>
+                <span class="hidden sm:inline">Reset Quiz</span>
+            </button>
+
+            <!-- Sound toggle -->
+            <button id="soundToggleBtn" onclick="toggleAudio()" class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-medium text-slate-300 transition flex items-center gap-1.5">
+                <span id="soundIcon">🔊</span>
+                <span class="hidden sm:inline" id="soundLabel">Sound On</span>
+            </button>
+
+            <!-- Fullscreen -->
+            <button onclick="toggleFullScreen()" class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-medium text-slate-300 transition flex items-center gap-1.5" title="Toggle Fullscreen for Projector">
+                <span>⛶</span>
+                <span class="hidden sm:inline">Projector</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8 z-10 w-full max-w-5xl mx-auto">
+
+        <!-- ================= SCREEN 1: SEMINAR SETUP ================= -->
+        <section id="welcome-screen" class="glass-panel w-full max-w-3xl rounded-3xl p-6 sm:p-10 text-center fade-in relative overflow-hidden">
+            <!-- Subtle backdrop halo -->
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold tracking-wider uppercase mb-5">
+                <span>🏫</span> W W A COSSIPORE ENGLISH SCHOOL
+            </div>
+
+            <h2 class="text-3xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-100 to-cyan-300 mb-3 font-display tracking-tight leading-tight">
+                Five Kingdom Quest
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8 font-normal leading-relaxed">
+                An interactive 10-question symposium journey designed to test your foundational knowledge of the Five Kingdom Classification.
+            </p>
+
+            <!-- STYLISH DESIGNER SHOWCASE -->
+            <div class="glass-card-subtle p-5 sm:p-6 rounded-2xl max-w-2xl mx-auto mb-8 border border-white/10 relative">
+                <div class="flex items-center justify-center gap-2 mb-3">
+                    <span class="h-[1px] w-8 bg-emerald-500/40"></span>
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-1.5">
+                        <span>✨</span> Designed & Curated By
+                    </span>
+                    <span class="h-[1px] w-8 bg-emerald-500/40"></span>
+                </div>
+                
+                <!-- 5 Stylized Designer Badges -->
+                <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+                    <div class="designer-pill px-3.5 py-2 rounded-xl flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-300 font-bold text-xs flex items-center justify-center border border-emerald-500/30">A</span>
+                        <span class="text-xs sm:text-sm font-semibold text-slate-200">Aritrika</span>
+                    </div>
+
+                    <div class="designer-pill px-3.5 py-2 rounded-xl flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-300 font-bold text-xs flex items-center justify-center border border-teal-500/30">K</span>
+                        <span class="text-xs sm:text-sm font-semibold text-slate-200">Kausani</span>
+                    </div>
+
+                    <div class="designer-pill px-3.5 py-2 rounded-xl flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-300 font-bold text-xs flex items-center justify-center border border-cyan-500/30">H</span>
+                        <span class="text-xs sm:text-sm font-semibold text-slate-200">Hiya</span>
+                    </div>
+
+                    <div class="designer-pill px-3.5 py-2 rounded-xl flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-300 font-bold text-xs flex items-center justify-center border border-indigo-500/30">M</span>
+                        <span class="text-xs sm:text-sm font-semibold text-slate-200">Mahika</span>
+                    </div>
+
+                    <div class="designer-pill px-3.5 py-2 rounded-xl flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-lg bg-purple-500/20 text-purple-300 font-bold text-xs flex items-center justify-center border border-purple-500/30">P</span>
+                        <span class="text-xs sm:text-sm font-semibold text-slate-200">Parinita</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration Card -->
+            <div class="glass-card-subtle p-5 rounded-2xl max-w-md mx-auto mb-8 text-left space-y-4">
+                
+                <!-- Personalized Name Input -->
+                <div>
+                    <label for="playerNameInput" class="block text-xs font-mono uppercase tracking-wider text-emerald-400 mb-1.5 font-bold">
+                        Player Name
+                    </label>
+                    <input type="text" id="playerNameInput" placeholder="Enter your name"
+                        class="w-full px-4 py-3 bg-slate-950/80 border border-slate-700 rounded-xl text-white font-medium focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition text-sm">
+                </div>
+
+                <div>
+                    <label for="hallTopicInput" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5 font-semibold">
+                        Seminar Event / Hall Name
+                    </label>
+                    <input type="text" id="hallTopicInput" value="Auditorium Hall — Annual Biology Symposium" placeholder="e.g. Science Day Seminar"
+                        class="w-full px-4 py-3 bg-slate-950/80 border border-slate-700 rounded-xl text-slate-300 font-medium focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition text-sm">
+                </div>
+
+                <div class="pt-2 flex items-center justify-between border-t border-white/10">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-200 block">30-Second Speaker Timer</span>
+                        <span class="text-[11px] text-slate-400">Quiz stops immediately if time runs out!</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="timerToggle" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question Tiers Indicator -->
+            <div class="grid grid-cols-4 gap-2 mb-8 text-center text-xs font-mono max-w-lg mx-auto">
+                <div class="p-2.5 rounded-xl bg-slate-900/60 border border-white/5">
+                    <span class="text-emerald-400 font-bold block text-sm mb-0.5">3 Qs</span>
+                    <span class="text-slate-400 text-[10px]">VERY EASY</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900/60 border border-white/5">
+                    <span class="text-teal-400 font-bold block text-sm mb-0.5">2 Qs</span>
+                    <span class="text-slate-400 text-[10px]">EASY</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900/60 border border-white/5">
+                    <span class="text-cyan-400 font-bold block text-sm mb-0.5">3 Qs</span>
+                    <span class="text-slate-400 text-[10px]">MODERATE</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900/60 border border-white/5">
+                    <span class="text-purple-400 font-bold block text-sm mb-0.5">2 Qs</span>
+                    <span class="text-slate-400 text-[10px]">HARD</span>
+                </div>
+            </div>
+
+            <button onclick="startSeminarQuiz()" 
+                class="w-full max-w-md py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-base tracking-wide shadow-xl shadow-emerald-500/20 transform transition hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 mx-auto">
+                <span>Begin Five Kingdom Quest</span>
+                <span class="text-lg">→</span>
+            </button>
+        </section>
+
+        <!-- ================= SCREEN 2: QUIZ PRESENTATION SCREEN ================= -->
+        <section id="quiz-screen" class="glass-panel w-full max-w-4xl rounded-3xl p-5 sm:p-8 md:p-10 hidden flex flex-col justify-between relative">
+            <div>
+                <!-- Top Question Status Bar -->
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-white/10 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-mono font-bold text-emerald-400 text-base" id="questionIndicator">
+                            01
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Question</span>
+                                <span class="text-xs font-bold text-slate-200"><span id="currentQuestionNum">1</span> of 10</span>
+                            </div>
+                            <span id="sessionDisplayTag" class="text-xs text-slate-400 truncate max-w-[260px] inline-block font-medium">W W A Cossipore English School</span>
+                        </div>
+                    </div>
+
+                    <!-- Difficulty & Speaker Tools -->
+                    <div class="flex items-center gap-2 sm:gap-3">
+                        <span id="difficultyBadge" class="px-3 py-1 rounded-full text-xs font-extrabold tracking-wider font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                            VERY EASY
+                        </span>
+
+                        <!-- Audience Poll Button -->
+                        <button id="pollBtn" onclick="toggleAudiencePoll()" class="px-3 py-1.5 rounded-xl border border-cyan-500/30 bg-cyan-950/40 text-cyan-300 hover:bg-cyan-500/20 text-xs font-semibold transition flex items-center gap-1.5" title="Simulate audience live polling">
+                            <span>📊</span>
+                            <span class="hidden sm:inline">Audience Poll</span>
+                        </button>
+
+                        <!-- 50:50 Lifeline Button -->
+                        <button id="fiftyFiftyBtn" onclick="trigger5050()" class="px-3 py-1.5 rounded-xl border border-purple-500/30 bg-purple-950/40 text-purple-300 hover:bg-purple-500/20 text-xs font-semibold transition flex items-center gap-1.5" title="Eliminate three incorrect choices">
+                            <span>✂️</span>
+                            <span class="hidden sm:inline">50:50</span>
+                        </button>
+
+                        <!-- Timer Box with Pause/Resume -->
+                        <div id="timerContainer" class="flex items-center gap-1.5 px-3 py-1 bg-slate-900 border border-slate-700 rounded-xl font-mono text-xs text-amber-300">
+                            <span>⏱️</span>
+                            <span id="timerCountdown">30s</span>
+                            <button onclick="toggleTimerPause()" id="timerPauseBtn" class="text-[10px] uppercase font-bold text-slate-400 hover:text-white ml-1 px-1 rounded bg-slate-800" title="Pause or Resume Timer">
+                                ⏸
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animated Progress Fill Bar -->
+                <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden mb-6 border border-white/5">
+                    <div id="quizProgressBar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full transition-all duration-300" style="width: 10%"></div>
+                </div>
+
+                <!-- Category & Question Prompt -->
+                <div class="mb-6">
+                    <span id="categoryLabel" class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-2">Five Kingdom Classification</span>
+                    <h3 id="questionPrompt" class="text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-tight tracking-tight min-h-[64px] flex items-center font-display">
+                        Question text goes here
+                    </h3>
+                </div>
+
+                <!-- 5 Options Grid -->
+                <div id="optionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-6">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Live Audience Poll Visualizer -->
+                <div id="pollDisplay" class="hidden p-4 rounded-2xl bg-slate-900/90 border border-cyan-500/30 mb-6 fade-in">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-mono text-cyan-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                            <span>📊</span> Simulated Audience Vote Distribution
+                        </span>
+                        <span class="text-[11px] text-slate-400 font-mono">Sample: 120 Audience Attendees</span>
+                    </div>
+                    <div id="pollBarsContainer" class="space-y-2 pt-1">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Seminar Keynote Takeaway Card -->
+                <div id="takeawayCard" class="hidden p-5 rounded-2xl bg-emerald-950/30 border border-emerald-500/40 mb-6 fade-in">
+                    <div class="flex items-start gap-3.5">
+                        <div class="text-2xl mt-0.5" id="takeawayIcon">💡</div>
+                        <div class="flex-1">
+                            <span class="text-xs font-mono font-bold tracking-widest uppercase text-emerald-400 block mb-1">
+                                Concept Takeaway
+                            </span>
+                            <p id="takeawayText" class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                                Takeaway explanation goes here.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Presenter Footer Bar -->
+            <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-2">
+                <div class="flex items-center gap-3 text-xs font-mono text-slate-400">
+                    <div>Score: <span id="liveScoreCounter" class="text-emerald-400 font-bold">0</span> / <span class="text-slate-300">10</span></div>
+                    <span class="text-slate-600">|</span>
+                    <button onclick="openResetModal()" class="text-rose-400 hover:text-rose-300 underline underline-offset-2 transition font-sans text-xs">
+                        Restart Quiz
+                    </button>
+                    <span class="hidden md:inline text-slate-600">|</span>
+                    <span class="hidden md:inline text-slate-400 font-sans text-[11px]">W.W.A. Cossipore English School</span>
+                </div>
+
+                <button id="nextQuestionBtn" onclick="nextQuestion()" disabled
+                    class="py-2.5 px-6 rounded-xl bg-slate-800 text-slate-500 border border-slate-700 font-bold text-xs sm:text-sm flex items-center gap-2 cursor-not-allowed transition-all">
+                    <span>Next Question</span>
+                    <span>→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= SCREEN 3: RESULTS & SEMINAR RECAP ================= -->
+        <section id="result-screen" class="glass-panel w-full max-w-3xl rounded-3xl p-6 sm:p-10 hidden fade-in text-center">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-400/40 text-4xl mb-3 shadow-lg shadow-emerald-500/15" id="resultTrophyIcon">
+                🏆
+            </div>
+
+            <div class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold mb-1">
+                W W A Cossipore English School
+            </div>
+            
+            <!-- Personalized Results Text -->
+            <h2 class="text-2xl sm:text-4xl font-black text-white mb-1 font-display" id="resultTitle">
+                Five Kingdom Quest Complete!
+            </h2>
+            <p id="resultSubtitle" class="text-slate-400 text-sm mb-6">
+                Your performance metrics have been calculated.
+            </p>
+
+            <!-- Metrics Summary Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-6">
+                <div class="glass-card-subtle p-4 rounded-2xl border border-white/5">
+                    <span class="text-xs font-mono text-slate-400 uppercase tracking-widest block mb-1">Final Score</span>
+                    <div class="text-3xl sm:text-4xl font-black text-emerald-400 font-mono">
+                        <span id="finalScoreText">0</span><span class="text-base text-slate-500">/10</span>
+                    </div>
+                </div>
+
+                <div class="glass-card-subtle p-4 rounded-2xl border border-white/5">
+                    <span class="text-xs font-mono text-slate-400 uppercase tracking-widest block mb-1">Accuracy</span>
+                    <div id="accuracyText" class="text-3xl sm:text-4xl font-black text-cyan-400 font-mono">
+                        0%
+                    </div>
+                </div>
+
+                <div class="glass-card-subtle p-4 rounded-2xl border border-white/5">
+                    <span class="text-xs font-mono text-slate-400 uppercase tracking-widest block mb-1">Distinction</span>
+                    <div id="distinctionTier" class="text-sm sm:text-base font-bold text-amber-300 mt-2">
+                        Molecular Specialist
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stylized Designer Attribution on Results Screen -->
+            <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 mb-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-slate-400">
+                <span class="font-mono text-emerald-400 font-semibold uppercase tracking-wider text-[11px]">Design & Curation Team:</span>
+                <span class="text-slate-200 font-medium">Aritrika</span> •
+                <span class="text-slate-200 font-medium">Kausani</span> •
+                <span class="text-slate-200 font-medium">Hiya</span> •
+                <span class="text-slate-200 font-medium">Mahika</span> •
+                <span class="text-slate-200 font-medium">Parinita</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <button onclick="copyRecap()" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-200 font-semibold text-xs transition flex items-center justify-center gap-2">
+                    <span id="copyIcon">📋</span>
+                    <span id="copyLabel">Copy Final Result</span>
+                </button>
+
+                <button onclick="restartQuiz()" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-extrabold text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+                    <span>↻</span>
+                    <span>Start New Session</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= TIME'S UP MODAL ================= -->
+    <div id="timeUpModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="glass-panel w-full max-w-sm rounded-2xl p-6 text-center border border-rose-500/30 shadow-2xl shadow-rose-500/20 fade-in">
+            <div class="w-16 h-16 rounded-full bg-rose-500/10 border border-rose-500/50 text-rose-400 text-3xl flex items-center justify-center mx-auto mb-4 animate-pulse">
+                ⏰
+            </div>
+            <h3 class="text-2xl font-black text-white mb-2 font-display">Time's Up!</h3>
+            <p class="text-sm text-slate-300 mb-6 leading-relaxed">
+                You ran out of time on this question. The quest has ended.
+            </p>
+            <div class="space-y-3">
+                <button onclick="confirmResetQuiz(false)" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-400 hover:to-rose-500 text-white font-bold text-sm tracking-wide transition shadow-lg">
+                    Restart Quiz
+                </button>
+                <button onclick="confirmResetQuiz(true)" class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition">
+                    Back to Setup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= RESET CONFIRMATION MODAL ================= -->
+    <div id="resetModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="glass-panel w-full max-w-sm rounded-2xl p-6 text-center border border-white/15 shadow-2xl fade-in">
+            <div class="w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-2xl flex items-center justify-center mx-auto mb-3">
+                ⚠️
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Reset Quest?</h3>
+            <p class="text-xs text-slate-400 mb-5 leading-relaxed">
+                This will reset scores, timer, and progress back to Question 1. You can restart immediately or return to the setup screen.
+            </p>
+            <div class="space-y-2">
+                <button onclick="confirmResetQuiz(false)" class="w-full py-2.5 px-4 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs tracking-wider transition">
+                    Restart from Question 1
+                </button>
+                <button onclick="confirmResetQuiz(true)" class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition">
+                    Return to Setup
+                </button>
+                <button onclick="closeResetModal()" class="w-full py-2 px-4 rounded-xl text-slate-400 hover:text-white font-medium text-xs transition">
+                    Cancel & Continue Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // Options corresponding to the Five Kingdom Classification
+        const kingdomOptions = ["Monera", "Protista", "Fungi", "Plantae", "Animalia"];
+        
+        function getPollDist(answerIndex) {
+            const base = [4, 5, 3, 2, 6];
+            base[answerIndex] = 80; 
+            return base;
+        }
+
+        // 3 Sets of 10 Curated Biological Questions
+        const allSets = [
+            // SET 1
+            [
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Tiger belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Tigers are multicellular, heterotrophic eukaryotes without cell walls, placing them in the Animalia kingdom.", pollDistribution: getPollDist(4) },
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Rose plant belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Rose plants are multicellular autotrophs that undergo photosynthesis, making them part of Plantae.", pollDistribution: getPollDist(3) },
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does Homo sapiens (Human) belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Humans possess complex organ systems and are heterotrophic, placing us firmly in the Animal kingdom.", pollDistribution: getPollDist(4) },
+                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom do Mushrooms belong to?", options: kingdomOptions, answer: "Fungi", takeaway: "Mushrooms are saprophytic (absorb nutrients from dead matter) and have cell walls made of chitin.", pollDistribution: getPollDist(2) },
+                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does a Butterfly belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Insects like butterflies are invertebrates belonging to the phylum Arthropoda within the Animalia kingdom.", pollDistribution: getPollDist(4) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does an Amoeba belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Amoebas are mostly unicellular eukaryotes that don't fit perfectly into plants, animals, or fungi, categorized as Protista.", pollDistribution: getPollDist(1) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does an Earthworm belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Earthworms are segmented worms (Annelids) that are multicellular heterotrophs.", pollDistribution: getPollDist(4) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom do Ferns belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Ferns are vascular plants that reproduce via spores and do not have seeds or flowers.", pollDistribution: getPollDist(3) },
+                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does Cyanobacteria (blue-green algae) belong to?", options: kingdomOptions, answer: "Monera", takeaway: "Despite being called 'algae', cyanobacteria are prokaryotes (lacking a true nucleus) and belong to Monera.", pollDistribution: getPollDist(0) },
+                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does Euglena (a single-celled organism with a flagellum) belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Euglena exhibits characteristics of both plants (chloroplasts) and animals (motility), making it a classic Protist.", pollDistribution: getPollDist(1) }
+            ],
+            // SET 2
+            [
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Dog belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Dogs are mammalian vertebrates and quintessential members of the Animalia kingdom.", pollDistribution: getPollDist(4) },
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Sunflower belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Sunflowers are angiosperms (flowering plants) that produce energy through photosynthesis.", pollDistribution: getPollDist(3) },
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does Mangifera indica (Mango tree) belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Mangifera indica is a large fruit-bearing tree, possessing eukaryotic autotrophic cells.", pollDistribution: getPollDist(3) },
+                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does Yeast (used in baking) belong to?", options: kingdomOptions, answer: "Fungi", takeaway: "Yeasts are unique as they are unicellular Fungi, unlike typical multicellular mushrooms.", pollDistribution: getPollDist(2) },
+                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does a Frog belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Frogs are amphibians, possessing specialized organ systems characteristic of Animalia.", pollDistribution: getPollDist(4) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does a Paramecium belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Paramecium are single-celled, ciliated eukaryotes that inhabit aquatic environments.", pollDistribution: getPollDist(1) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does Bread mould (Rhizopus) belong to?", options: kingdomOptions, answer: "Fungi", takeaway: "Bread mould relies on dead organic material for nutrition, characteristic of saprotrophic Fungi.", pollDistribution: getPollDist(2) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does Moss belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Mosses are non-vascular plants (bryophytes) that thrive in damp environments.", pollDistribution: getPollDist(3) },
+                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom do Diatoms (microscopic organisms with silica shells) belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Diatoms are a major group of microalgae and belong to the diverse kingdom Protista.", pollDistribution: getPollDist(1) },
+                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does Mycoplasma (the smallest known living cell) belong to?", options: kingdomOptions, answer: "Monera", takeaway: "Mycoplasma are bacteria that lack a cell wall around their cell membrane, belonging to Monera.", pollDistribution: getPollDist(0) }
+            ],
+            // SET 3
+            [
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Mosquito belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Mosquitoes are insects, placing them in the phylum Arthropoda within the Animal kingdom.", pollDistribution: getPollDist(4) },
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does an Apple tree belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Apple trees are complex autotrophs capable of photosynthesis, belonging to Plantae.", pollDistribution: getPollDist(3) },
+                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does Felis catus (Domestic cat) belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Domestic cats are eukaryotic, multicellular carnivores classified as animals.", pollDistribution: getPollDist(4) },
+                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does the bacteria found in curd (Lactobacillus) belong to?", options: kingdomOptions, answer: "Monera", takeaway: "Lactobacillus are simple prokaryotic organisms (bacteria) belonging to the kingdom Monera.", pollDistribution: getPollDist(0) },
+                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does a Spider belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Spiders are arachnids, a class of joint-legged invertebrate animals.", pollDistribution: getPollDist(4) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does Penicillium (the mold used to make antibiotics) belong to?", options: kingdomOptions, answer: "Fungi", takeaway: "Penicillium is a genus of ascomycetous fungi of major importance in medicine.", pollDistribution: getPollDist(2) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does a Sponge (found in the ocean) belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Though they lack true tissues, sponges are basal animals belonging to the phylum Porifera.", pollDistribution: getPollDist(4) },
+                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does a Pine tree belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Pine trees are gymnosperms (cone-bearing seed plants), which fall under Plantae.", pollDistribution: getPollDist(3) },
+                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom do Slime moulds belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Slime moulds share traits with both fungi and animals but are technically classified as Protists.", pollDistribution: getPollDist(1) },
+                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does Plasmodium (the parasite that causes malaria) belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Plasmodium is a unicellular eukaryotic parasite, classifying it as a protozoan in the Protista kingdom.", pollDistribution: getPollDist(1) }
+            ]
+        ];
+
+        let questions = [];
+
+        // Synthesizer Audio Engine
+        class SynthesizerAudio {
+            constructor() {
+                this.ctx = null;
+                this.enabled = true;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) this.ctx = new AudioCtx();
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            playClick() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(520, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(740, this.ctx.currentTime + 0.04);
+                    gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.04);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.05);
+                } catch(e) {}
+            }
+
+            playCorrect() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+                try {
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + (idx * 0.06));
+                        gain.gain.setValueAtTime(0.15, this.ctx.currentTime + (idx * 0.06));
+                        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + (idx * 0.06) + 0.3);
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start(this.ctx.currentTime + (idx * 0.06));
+                        osc.stop(this.ctx.currentTime + (idx * 0.06) + 0.32);
+                    });
+                } catch(e) {}
+            }
+
+            playWrong() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+                try {
+                    const pulse = [
+                        { f: 155.56, t: 0, d: 0.16 },
+                        { f: 116.54, t: 0.12, d: 0.22 }
+                    ];
+                    pulse.forEach(p => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(p.f, this.ctx.currentTime + p.t);
+                        osc.frequency.exponentialRampToValueAtTime(p.f * 0.85, this.ctx.currentTime + p.t + p.d);
+
+                        gain.gain.setValueAtTime(0.18, this.ctx.currentTime + p.t);
+                        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + p.t + p.d);
+
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start(this.ctx.currentTime + p.t);
+                        osc.stop(this.ctx.currentTime + p.t + p.d + 0.02);
+                    });
+                } catch(e) {}
+            }
+
+            playFanfare() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+                try {
+                    const chimeSeq = [
+                        { f: 523.25, d: 0.1, t: 0 },
+                        { f: 659.25, d: 0.1, t: 0.11 },
+                        { f: 783.99, d: 0.1, t: 0.22 },
+                        { f: 1046.50, d: 0.45, t: 0.33 }
+                    ];
+                    chimeSeq.forEach(item => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(item.f, this.ctx.currentTime + item.t);
+                        gain.gain.setValueAtTime(0.2, this.ctx.currentTime + item.t);
+                        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + item.t + item.d);
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start(this.ctx.currentTime + item.t);
+                        osc.stop(this.ctx.currentTime + item.t + item.d + 0.05);
+                    });
+                } catch(e) {}
+            }
+        }
+
+        const sound = new SynthesizerAudio();
+
+        function toggleAudio() {
+            sound.enabled = !sound.enabled;
+            const icon = document.getElementById('soundIcon');
+            const label = document.getElementById('soundLabel');
+            if (sound.enabled) {
+                icon.textContent = '🔊';
+                label.textContent = 'Sound On';
+                sound.playClick();
+            } else {
+                icon.textContent = '🔇';
+                label.textContent = 'Muted';
+            }
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        // State Variables
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let playerName = "Explorer";
+        const schoolName = "W W A Cossipore English School";
+        let sessionHall = "Auditorium Hall";
+        let isAnswerLocked = false;
+        let timerSeconds = 30;
+        let timerId = null;
+        let isTimerPaused = false;
+        let isTimerActive = true;
+        let isPollVisible = false;
+
+        // DOM elements
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const nextQuestionBtn = document.getElementById('nextQuestionBtn');
+        const takeawayCard = document.getElementById('takeawayCard');
+        const takeawayText = document.getElementById('takeawayText');
+        const takeawayIcon = document.getElementById('takeawayIcon');
+        const pollDisplay = document.getElementById('pollDisplay');
+        const pollBarsContainer = document.getElementById('pollBarsContainer');
+        const timerContainer = document.getElementById('timerContainer');
+        const timerCountdown = document.getElementById('timerCountdown');
+        const timerPauseBtn = document.getElementById('timerPauseBtn');
+        const inQuizResetBtn = document.getElementById('inQuizResetBtn');
+        const resetModal = document.getElementById('resetModal');
+        const timeUpModal = document.getElementById('timeUpModal');
+
+        function startSeminarQuiz() {
+            sound.init();
+            sound.playClick();
+            
+            // Get Player Name
+            const nameInput = document.getElementById('playerNameInput').value.trim();
+            if (nameInput) playerName = nameInput;
+
+            // Load and Circulate Set Logic
+            let activeSetIndex = parseInt(localStorage.getItem('bioQuizSetIndex') || '0');
+            let rawQuestions = [...allSets[activeSetIndex]];
+            
+            // Randomize questions within the selected set
+            questions = rawQuestions.sort(() => Math.random() - 0.5);
+            
+            // Increment logic to circulate through 0, 1, 2
+            localStorage.setItem('bioQuizSetIndex', (activeSetIndex + 1) % 3);
+
+            const hallInput = document.getElementById('hallTopicInput').value.trim();
+            if (hallInput) sessionHall = hallInput;
+
+            isTimerActive = document.getElementById('timerToggle').checked;
+            if (!isTimerActive) {
+                timerContainer.classList.add('hidden');
+            } else {
+                timerContainer.classList.remove('hidden');
+            }
+
+            document.getElementById('sessionDisplayTag').textContent = `${schoolName} • ${sessionHall}`;
+
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('liveScoreCounter').textContent = "0";
+
+            // Reveal in-quiz reset button
+            inQuizResetBtn.classList.remove('hidden');
+
+            switchScreen(welcomeScreen, quizScreen, () => {
+                loadQuestion();
+            });
+        }
+
+        // Modals Logic
+        function openResetModal() {
+            sound.playClick();
+            if (isTimerActive && !isAnswerLocked && !isTimerPaused) {
+                toggleTimerPause();
+            }
+            resetModal.classList.remove('hidden');
+        }
+
+        function closeResetModal() {
+            sound.playClick();
+            resetModal.classList.add('hidden');
+            if (isTimerActive && !isAnswerLocked && isTimerPaused) {
+                toggleTimerPause();
+            }
+        }
+        
+        function showTimeUpModal() {
+            isAnswerLocked = true;
+            sound.playWrong();
+            timeUpModal.classList.remove('hidden');
+        }
+
+        function confirmResetQuiz(returnToSetup) {
+            sound.playClick();
+            clearInterval(timerId);
+            resetModal.classList.add('hidden');
+            timeUpModal.classList.add('hidden');
+
+            currentQuestionIndex = 0;
+            score = 0;
+            isAnswerLocked = false;
+            document.getElementById('liveScoreCounter').textContent = "0";
+
+            if (returnToSetup) {
+                inQuizResetBtn.classList.add('hidden');
+                switchScreen(quizScreen, welcomeScreen);
+            } else {
+                loadQuestion();
+            }
+        }
+
+        // Timer Functions
+        function resetTimer() {
+            clearInterval(timerId);
+            if (!isTimerActive) return;
+
+            timerSeconds = 30;
+            isTimerPaused = false;
+            timerPauseBtn.textContent = '⏸';
+            timerCountdown.textContent = `${timerSeconds}s`;
+            timerCountdown.classList.remove('text-rose-400', 'animate-pulse');
+            timerCountdown.classList.add('text-amber-300');
+
+            timerId = setInterval(() => {
+                if (isTimerPaused || isAnswerLocked) return;
+
+                timerSeconds--;
+                timerCountdown.textContent = `${timerSeconds}s`;
+
+                if (timerSeconds <= 8) {
+                    timerCountdown.classList.remove('text-amber-300');
+                    timerCountdown.classList.add('text-rose-400', 'animate-pulse');
+                }
+
+                if (timerSeconds <= 0) {
+                    clearInterval(timerId);
+                    timerCountdown.textContent = "0s";
+                    showTimeUpModal();
+                }
+            }, 1000);
+        }
+
+        function toggleTimerPause() {
+            if (!isTimerActive || isAnswerLocked) return;
+            isTimerPaused = !isTimerPaused;
+            timerPauseBtn.textContent = isTimerPaused ? '▶' : '⏸';
+            sound.playClick();
+        }
+
+        function loadQuestion() {
+            isAnswerLocked = false;
+            isPollVisible = false;
+            pollDisplay.classList.add('hidden');
+            takeawayCard.classList.add('hidden');
+
+            const q = questions[currentQuestionIndex];
+
+            document.getElementById('questionIndicator').textContent = String(currentQuestionIndex + 1).padStart(2, '0');
+            document.getElementById('currentQuestionNum').textContent = currentQuestionIndex + 1;
+            
+            const badge = document.getElementById('difficultyBadge');
+            badge.textContent = q.difficulty;
+            badge.className = `px-3 py-1 rounded-full text-xs font-extrabold tracking-wider font-mono border ${q.color}`;
+
+            document.getElementById('categoryLabel').textContent = q.category;
+            document.getElementById('questionPrompt').textContent = q.question;
+
+            // Update Progress Bar
+            const pct = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById('quizProgressBar').style.width = `${pct}%`;
+
+            // Reset 50:50 Lifeline Button
+            const fiftyBtn = document.getElementById('fiftyFiftyBtn');
+            fiftyBtn.disabled = false;
+            fiftyBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+
+            // Render Options
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D', 'E'];
+
+            q.options.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "option-card w-full p-4 rounded-2xl glass-card-subtle border border-white/10 text-left flex items-center justify-between text-sm sm:text-base font-medium text-slate-200";
+                btn.id = `opt-choice-${idx}`;
+                btn.onclick = () => selectOption(optText, idx);
+
+                btn.innerHTML = `
+                    <div class="flex items-center gap-3.5 pr-2">
+                        <span class="w-8 h-8 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center font-mono text-xs font-bold text-emerald-400 shrink-0">
+                            ${letters[idx]}
+                        </span>
+                        <span class="leading-snug">${optText}</span>
+                    </div>
+                    <span id="opt-icon-${idx}" class="text-base font-bold shrink-0 opacity-0 transition-opacity"></span>
+                `;
+                container.appendChild(btn);
+            });
+
+            // Disable Next Button until answer selected
+            nextQuestionBtn.disabled = true;
+            nextQuestionBtn.className = "py-2.5 px-6 rounded-xl bg-slate-900 text-slate-500 border border-slate-800 font-bold text-xs sm:text-sm flex items-center gap-2 cursor-not-allowed transition-all";
+
+            resetTimer();
+        }
+
+        function selectOption(selectedText, selectedIdx) {
+            if (isAnswerLocked) return;
+            isAnswerLocked = true;
+            clearInterval(timerId);
+
+            const q = questions[currentQuestionIndex];
+            const isCorrect = (selectedText === q.answer);
+
+            if (isCorrect) {
+                score++;
+                document.getElementById('liveScoreCounter').textContent = score;
+                sound.playCorrect();
+            } else {
+                sound.playWrong();
+            }
+
+            // Visual feedback on options
+            q.options.forEach((opt, idx) => {
+                const btn = document.getElementById(`opt-choice-${idx}`);
+                const icon = document.getElementById(`opt-icon-${idx}`);
+                btn.disabled = true;
+
+                if (opt === q.answer) {
+                    btn.classList.remove('glass-card-subtle', 'border-white/10');
+                    btn.classList.add('bg-emerald-500/20', 'border-emerald-400', 'text-emerald-100', 'glow-correct');
+                    icon.innerHTML = '✓';
+                    icon.classList.add('text-emerald-400');
+                    icon.classList.remove('opacity-0');
+                } else if (idx === selectedIdx && !isCorrect) {
+                    btn.classList.remove('glass-card-subtle', 'border-white/10');
+                    btn.classList.add('bg-rose-500/20', 'border-rose-400', 'text-rose-200', 'glow-incorrect');
+                    icon.innerHTML = '✕';
+                    icon.classList.add('text-rose-400');
+                    icon.classList.remove('opacity-0');
+                } else {
+                    btn.classList.add('opacity-40');
+                }
+            });
+
+            // Populate Seminar Takeaway Card
+            takeawayText.textContent = q.takeaway;
+            takeawayIcon.textContent = isCorrect ? "🎯" : "💡";
+            takeawayCard.classList.remove('hidden');
+
+            // Enable Next Question Button
+            nextQuestionBtn.disabled = false;
+            nextQuestionBtn.className = "py-2.5 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all cursor-pointer transform hover:scale-[1.02] active:scale-95";
+        }
+
+        function toggleAudiencePoll() {
+            sound.playClick();
+            isPollVisible = !isPollVisible;
+            if (!isPollVisible) {
+                pollDisplay.classList.add('hidden');
+                return;
+            }
+
+            const q = questions[currentQuestionIndex];
+            const letters = ['A', 'B', 'C', 'D', 'E'];
+            pollBarsContainer.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const pct = q.pollDistribution[idx];
+                const barRow = document.createElement('div');
+                barRow.className = "space-y-1";
+                barRow.innerHTML = `
+                    <div class="flex justify-between text-xs font-mono">
+                        <span class="text-slate-300 font-semibold">${letters[idx]}: ${opt}</span>
+                        <span class="text-cyan-400 font-bold">${pct}%</span>
+                    </div>
+                    <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-white/5">
+                        <div class="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full transition-all duration-700" style="width: ${pct}%"></div>
+                    </div>
+                `;
+                pollBarsContainer.appendChild(barRow);
+            });
+
+            pollDisplay.classList.remove('hidden');
+        }
+
+        function trigger5050() {
+            if (isAnswerLocked) return;
+            sound.playClick();
+            const q = questions[currentQuestionIndex];
+            const wrongIndices = [];
+
+            q.options.forEach((opt, idx) => {
+                if (opt !== q.answer) wrongIndices.push(idx);
+            });
+
+            wrongIndices.sort(() => Math.random() - 0.5);
+            // Since we have 5 options, hide 3 wrong options to leave 1 wrong and 1 correct
+            const toHide = wrongIndices.slice(0, 3); 
+
+            toHide.forEach(idx => {
+                const btn = document.getElementById(`opt-choice-${idx}`);
+                if (btn) {
+                    btn.classList.add('opacity-10', 'pointer-events-none');
+                }
+            });
+
+            const fiftyBtn = document.getElementById('fiftyFiftyBtn');
+            fiftyBtn.disabled = true;
+            fiftyBtn.classList.add('opacity-40', 'cursor-not-allowed');
+        }
+
+        function nextQuestion() {
+            sound.playClick();
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            clearInterval(timerId);
+            sound.playFanfare();
+            inQuizResetBtn.classList.add('hidden');
+
+            switchScreen(quizScreen, resultScreen, () => {
+                const percentage = Math.round((score / questions.length) * 100);
+                document.getElementById('finalScoreText').textContent = score;
+                document.getElementById('accuracyText').textContent = `${percentage}%`;
+
+                const title = document.getElementById('resultTitle');
+                const subtitle = document.getElementById('resultSubtitle');
+                const trophy = document.getElementById('resultTrophyIcon');
+                const distinction = document.getElementById('distinctionTier');
+
+                // Personalized messaging
+                if (score >= 9) {
+                    trophy.textContent = "🧬";
+                    title.textContent = `Brilliant work, ${playerName}!`;
+                    subtitle.textContent = `You scored ${score} out of 10. Exceptional scientific acumen!`;
+                    distinction.textContent = "Principal Biologist Tier";
+                } else if (score >= 7) {
+                    trophy.textContent = "🔬";
+                    title.textContent = `Great job, ${playerName}!`;
+                    subtitle.textContent = `You scored ${score} out of 10. Strong biological foundations!`;
+                    distinction.textContent = "Senior Research Fellow Tier";
+                } else if (score >= 5) {
+                    trophy.textContent = "🌿";
+                    title.textContent = `Good effort, ${playerName}!`;
+                    subtitle.textContent = `You scored ${score} out of 10. Keep exploring the kingdoms!`;
+                    distinction.textContent = "Life Sciences Associate";
+                } else {
+                    trophy.textContent = "🌱";
+                    title.textContent = `Hi ${playerName}, keep trying!`;
+                    subtitle.textContent = `You scored ${score} out of 10. Every expert was once a beginner.`;
+                    distinction.textContent = "Junior Investigator Tier";
+                }
+            });
+        }
+
+        function copyRecap() {
+            sound.playClick();
+            const textToCopy = `🔬 BioSphere Quest Debrief\nPlayer: ${playerName}\nSchool: ${schoolName}\nDesigned by: Aritrika, Kausani, Hiya, Mahika, Parinita\nSession: ${sessionHall}\nScore: ${score}/10 (${Math.round((score/questions.length)*100)}% Accuracy)\nDistinction: ${document.getElementById('distinctionTier').textContent}\nTopic: Five Kingdom Classification.`;
+
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = textToCopy;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            const label = document.getElementById('copyLabel');
+            const icon = document.getElementById('copyIcon');
+            label.textContent = "Copied to Clipboard!";
+            icon.textContent = "✅";
+
+            setTimeout(() => {
+                label.textContent = "Copy Final Result";
+                icon.textContent = "📋";
+            }, 2500);
+        }
+
+        function restartQuiz() {
+            sound.playClick();
+            switchScreen(resultScreen, welcomeScreen);
+        }
+
+        function switchScreen(fromScreen, toScreen, callback) {
+            fromScreen.classList.remove('fade-in');
+            fromScreen.classList.add('fade-out');
+
+            setTimeout(() => {
+                fromScreen.classList.add('hidden');
+                fromScreen.classList.remove('fade-out');
+
+                toScreen.classList.remove('hidden');
+                toScreen.classList.add('fade-in');
+                if (callback) callback();
+            }, 240);
+        }
+
+        // Keyboard navigation for seminar speakers (A/B/C/D/E or 1-5, Space/Enter to advance)
+        window.addEventListener('keydown', (e) => {
+            if (quizScreen.classList.contains('hidden')) return;
+
+            if (!isAnswerLocked) {
+                const keyMap = {
+                    'KeyA': 0, 'Digit1': 0,
+                    'KeyB': 1, 'Digit2': 1,
+                    'KeyC': 2, 'Digit3': 2,
+                    'KeyD': 3, 'Digit4': 3,
+                    'KeyE': 4, 'Digit5': 4
+                };
+                if (e.code in keyMap) {
+                    const idx = keyMap[e.code];
+                    const q = questions[currentQuestionIndex];
+                    if (q && q.options[idx]) {
+                        selectOption(q.options[idx], idx);
+                    }
+                }
+            } else if ((e.code === 'Space' || e.code === 'Enter') && !nextQuestionBtn.disabled) {
+                nextQuestion();
+            }
+        });
+    </script>
+</body>
+</html>
