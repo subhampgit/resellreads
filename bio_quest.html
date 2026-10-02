@@ -123,7 +123,7 @@
             <div>
                 <div class="flex items-center gap-2">
                     <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">W.W.A. CES</span>
-                    <span class="text-xs text-slate-400 hidden sm:inline">• Five Kingdom Classification</span>
+                    <span class="text-xs text-slate-400 hidden sm:inline">• Classification & Phylum Quest</span>
                 </div>
                 <h1 class="text-sm sm:text-base font-bold tracking-tight text-white font-display">
                     W W A Cossipore English School
@@ -165,10 +165,10 @@
             </div>
 
             <h2 class="text-3xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-100 to-cyan-300 mb-3 font-display tracking-tight leading-tight">
-                Five Kingdom Quest
+                BioSphere Quest
             </h2>
             <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8 font-normal leading-relaxed">
-                An interactive 10-question symposium journey designed to test your foundational knowledge of the Five Kingdom Classification.
+                An interactive 10-question symposium journey designed to test your knowledge on Animalia divisions, Phyla, and the Five Kingdoms.
             </p>
 
             <!-- STYLISH DESIGNER SHOWCASE -->
@@ -190,7 +190,7 @@
 
                     <div class="designer-pill px-3.5 py-2 rounded-xl flex items-center gap-2.5">
                         <span class="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-300 font-bold text-xs flex items-center justify-center border border-teal-500/30">K</span>
-                        <span class="text-xs sm:text-sm font-semibold text-slate-200">Kausani</span>
+                        <span class="text-xs sm:text-sm font-semibold text-slate-200">Kaushani</span>
                     </div>
 
                     <div class="designer-pill px-3.5 py-2 rounded-xl flex items-center gap-2.5">
@@ -232,7 +232,7 @@
 
                 <div class="pt-2 flex items-center justify-between border-t border-white/10">
                     <div>
-                        <span class="text-xs font-semibold text-slate-200 block">30-Second Speaker Timer</span>
+                        <span class="text-xs font-semibold text-slate-200 block">10-Second Rapid Timer</span>
                         <span class="text-[11px] text-slate-400">Quiz stops immediately if time runs out!</span>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
@@ -264,7 +264,7 @@
 
             <button onclick="startSeminarQuiz()" 
                 class="w-full max-w-md py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-base tracking-wide shadow-xl shadow-emerald-500/20 transform transition hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 mx-auto">
-                <span>Begin Five Kingdom Quest</span>
+                <span>Begin Biological Quest</span>
                 <span class="text-lg">→</span>
             </button>
         </section>
@@ -300,7 +300,7 @@
                         </button>
 
                         <!-- 50:50 Lifeline Button -->
-                        <button id="fiftyFiftyBtn" onclick="trigger5050()" class="px-3 py-1.5 rounded-xl border border-purple-500/30 bg-purple-950/40 text-purple-300 hover:bg-purple-500/20 text-xs font-semibold transition flex items-center gap-1.5" title="Eliminate three incorrect choices">
+                        <button id="fiftyFiftyBtn" onclick="trigger5050()" class="px-3 py-1.5 rounded-xl border border-purple-500/30 bg-purple-950/40 text-purple-300 hover:bg-purple-500/20 text-xs font-semibold transition flex items-center gap-1.5" title="Eliminate two incorrect choices">
                             <span>✂️</span>
                             <span class="hidden sm:inline">50:50</span>
                         </button>
@@ -308,7 +308,7 @@
                         <!-- Timer Box with Pause/Resume -->
                         <div id="timerContainer" class="flex items-center gap-1.5 px-3 py-1 bg-slate-900 border border-slate-700 rounded-xl font-mono text-xs text-amber-300">
                             <span>⏱️</span>
-                            <span id="timerCountdown">30s</span>
+                            <span id="timerCountdown">10s</span>
                             <button onclick="toggleTimerPause()" id="timerPauseBtn" class="text-[10px] uppercase font-bold text-slate-400 hover:text-white ml-1 px-1 rounded bg-slate-800" title="Pause or Resume Timer">
                                 ⏸
                             </button>
@@ -329,7 +329,7 @@
                     </h3>
                 </div>
 
-                <!-- 5 Options Grid -->
+                <!-- 4 Options Grid -->
                 <div id="optionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-6">
                     <!-- Populated dynamically via JS -->
                 </div>
@@ -395,7 +395,7 @@
             
             <!-- Personalized Results Text -->
             <h2 class="text-2xl sm:text-4xl font-black text-white mb-1 font-display" id="resultTitle">
-                Five Kingdom Quest Complete!
+                BioSphere Quest Complete!
             </h2>
             <p id="resultSubtitle" class="text-slate-400 text-sm mb-6">
                 Your performance metrics have been calculated.
@@ -429,7 +429,7 @@
             <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 mb-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-slate-400">
                 <span class="font-mono text-emerald-400 font-semibold uppercase tracking-wider text-[11px]">Design & Curation Team:</span>
                 <span class="text-slate-200 font-medium">Aritrika</span> •
-                <span class="text-slate-200 font-medium">Kausani</span> •
+                <span class="text-slate-200 font-medium">Kaushani</span> •
                 <span class="text-slate-200 font-medium">Hiya</span> •
                 <span class="text-slate-200 font-medium">Mahika</span> •
                 <span class="text-slate-200 font-medium">Parinita</span>
@@ -497,55 +497,46 @@
 
     <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
-        // Options corresponding to the Five Kingdom Classification
-        const kingdomOptions = ["Monera", "Protista", "Fungi", "Plantae", "Animalia"];
-        
-        function getPollDist(answerIndex) {
-            const base = [4, 5, 3, 2, 6];
-            base[answerIndex] = 80; 
-            return base;
-        }
-
-        // 3 Sets of 10 Curated Biological Questions
+        // 3 Sets of 10 Engaging Questions with Custom Poll Distributions
         const allSets = [
             // SET 1
             [
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Tiger belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Tigers are multicellular, heterotrophic eukaryotes without cell walls, placing them in the Animalia kingdom.", pollDistribution: getPollDist(4) },
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Rose plant belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Rose plants are multicellular autotrophs that undergo photosynthesis, making them part of Plantae.", pollDistribution: getPollDist(3) },
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does Homo sapiens (Human) belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Humans possess complex organ systems and are heterotrophic, placing us firmly in the Animal kingdom.", pollDistribution: getPollDist(4) },
-                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom do Mushrooms belong to?", options: kingdomOptions, answer: "Fungi", takeaway: "Mushrooms are saprophytic (absorb nutrients from dead matter) and have cell walls made of chitin.", pollDistribution: getPollDist(2) },
-                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does a Butterfly belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Insects like butterflies are invertebrates belonging to the phylum Arthropoda within the Animalia kingdom.", pollDistribution: getPollDist(4) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does an Amoeba belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Amoebas are mostly unicellular eukaryotes that don't fit perfectly into plants, animals, or fungi, categorized as Protista.", pollDistribution: getPollDist(1) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does an Earthworm belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Earthworms are segmented worms (Annelids) that are multicellular heterotrophs.", pollDistribution: getPollDist(4) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom do Ferns belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Ferns are vascular plants that reproduce via spores and do not have seeds or flowers.", pollDistribution: getPollDist(3) },
-                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does Cyanobacteria (blue-green algae) belong to?", options: kingdomOptions, answer: "Monera", takeaway: "Despite being called 'algae', cyanobacteria are prokaryotes (lacking a true nucleus) and belong to Monera.", pollDistribution: getPollDist(0) },
-                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does Euglena (a single-celled organism with a flagellum) belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Euglena exhibits characteristics of both plants (chloroplasts) and animals (motility), making it a classic Protist.", pollDistribution: getPollDist(1) }
+                { difficulty: "VERY EASY", category: "Kingdom", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Mushroom belong to?", options: ["Plantae", "Fungi", "Protista", "Monera"], answer: "Fungi", takeaway: "Mushrooms are heterotrophic organisms with chitin cell walls, making them Fungi.", pollDistribution: [15, 75, 5, 5] },
+                { difficulty: "VERY EASY", category: "Class", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which class does Blue whale belongs ?[cite: 1]", options: ["Pisces[cite: 1]", "Reptilia[cite: 1]", "Mammalia[cite: 1]", "Amphibia[cite: 1]"], answer: "Mammalia[cite: 1]", takeaway: "Blue whales are marine mammals that give birth to live young and nurse them with milk.", pollDistribution: [30, 5, 60, 5] },
+                { difficulty: "VERY EASY", category: "Phylum", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "To which phylum does a Starfish belong?", options: ["Pisces", "Mollusca", "Echinodermata", "Cnidaria"], answer: "Echinodermata", takeaway: "Starfish are spiny-skinned marine invertebrates belonging to Echinodermata.", pollDistribution: [15, 20, 55, 10] },
+                { difficulty: "EASY", category: "Phylum", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "______ belongs to Arthropoda.", options: ["Octopus", "Centipede", "Earthworm", "Snail"], answer: "Centipede", takeaway: "Centipedes have jointed legs and an exoskeleton, characteristic of Arthropods.", pollDistribution: [10, 65, 15, 10] },
+                { difficulty: "EASY", category: "Class", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "A Flying Fox can be seen hanging upside down in trees and is active at night. Which class does it belong to?", options: ["Aves", "Mammalia", "Reptilia", "Amphibia"], answer: "Mammalia", takeaway: "Flying foxes are actually large bats, which are true flying mammals.", pollDistribution: [35, 55, 5, 5] },
+                { difficulty: "MODERATE", category: "Class", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Duck Bill Platypus belongs to[cite: 1]", options: ["Protisa[cite: 1]", "Mammalia[cite: 1]", "Monera[cite: 1]", "Pisces[cite: 1]"], answer: "Mammalia[cite: 1]", takeaway: "Despite laying eggs, the platypus nurses its young with milk and has fur, classifying it as a mammal.", pollDistribution: [5, 65, 5, 25] },
+                { difficulty: "MODERATE", category: "Class", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which class does a Seahorse belong to?", options: ["Mammalia", "Amphibia", "Pisces", "Reptilia"], answer: "Pisces", takeaway: "Seahorses breathe through gills and have a swim bladder, classifying them as bony fish (Pisces).", pollDistribution: [15, 10, 70, 5] },
+                { difficulty: "MODERATE", category: "Phylum", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "______ belongs to Mollusca.", options: ["Sponge", "Cuttlefish", "Tapeworm", "Hydra"], answer: "Cuttlefish", takeaway: "Cuttlefish are highly intelligent marine mollusks belonging to the class Cephalopoda.", pollDistribution: [10, 60, 20, 10] },
+                { difficulty: "HARD", category: "Kingdom", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "The Venus Flytrap actively catches and digests live insects. Which kingdom does it belong to?", options: ["Animalia", "Plantae", "Fungi", "Protista"], answer: "Plantae", takeaway: "Though it digests insects for nutrients, it still photosynthesizes and has plant cell walls.", pollDistribution: [25, 60, 10, 5] },
+                { difficulty: "HARD", category: "Phylum", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "To which phylum does a Silverfish belong?", options: ["Pisces", "Arthropoda", "Annelida", "Mollusca"], answer: "Arthropoda", takeaway: "Silverfish are small, wingless insects, which places them in the Arthropoda phylum.", pollDistribution: [25, 55, 10, 10] }
             ],
             // SET 2
             [
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Dog belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Dogs are mammalian vertebrates and quintessential members of the Animalia kingdom.", pollDistribution: getPollDist(4) },
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Sunflower belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Sunflowers are angiosperms (flowering plants) that produce energy through photosynthesis.", pollDistribution: getPollDist(3) },
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does Mangifera indica (Mango tree) belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Mangifera indica is a large fruit-bearing tree, possessing eukaryotic autotrophic cells.", pollDistribution: getPollDist(3) },
-                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does Yeast (used in baking) belong to?", options: kingdomOptions, answer: "Fungi", takeaway: "Yeasts are unique as they are unicellular Fungi, unlike typical multicellular mushrooms.", pollDistribution: getPollDist(2) },
-                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does a Frog belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Frogs are amphibians, possessing specialized organ systems characteristic of Animalia.", pollDistribution: getPollDist(4) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does a Paramecium belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Paramecium are single-celled, ciliated eukaryotes that inhabit aquatic environments.", pollDistribution: getPollDist(1) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does Bread mould (Rhizopus) belong to?", options: kingdomOptions, answer: "Fungi", takeaway: "Bread mould relies on dead organic material for nutrition, characteristic of saprotrophic Fungi.", pollDistribution: getPollDist(2) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does Moss belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Mosses are non-vascular plants (bryophytes) that thrive in damp environments.", pollDistribution: getPollDist(3) },
-                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom do Diatoms (microscopic organisms with silica shells) belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Diatoms are a major group of microalgae and belong to the diverse kingdom Protista.", pollDistribution: getPollDist(1) },
-                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does Mycoplasma (the smallest known living cell) belong to?", options: kingdomOptions, answer: "Monera", takeaway: "Mycoplasma are bacteria that lack a cell wall around their cell membrane, belonging to Monera.", pollDistribution: getPollDist(0) }
+                { difficulty: "VERY EASY", category: "Kingdom", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does an Amoeba belong to?", options: ["Monera", "Fungi", "Protista", "Animalia"], answer: "Protista", takeaway: "Amoebas are single-celled eukaryotes that do not neatly fit into plants, animals, or fungi.", pollDistribution: [10, 5, 80, 5] },
+                { difficulty: "VERY EASY", category: "Phylum", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Jellyfish belongs to[cite: 1]", options: ["Cnidaria[cite: 1]", "Porifera[cite: 1]", "Insecta[cite: 1]", "mollusca[cite: 1]"], answer: "Cnidaria[cite: 1]", takeaway: "Jellyfish have stinging cells called cnidocytes, a hallmark of the phylum Cnidaria.", pollDistribution: [65, 10, 5, 20] },
+                { difficulty: "VERY EASY", category: "Class", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "A Horned Toad has a wide, flat body covered in sharp spines. Which class does it belong to?", options: ["Amphibia", "Reptilia", "Mammalia", "Aves"], answer: "Reptilia", takeaway: "Despite its name, the horned toad is actually a lizard, which makes it a reptile.", pollDistribution: [40, 55, 3, 2] },
+                { difficulty: "EASY", category: "Phylum", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "______ belongs to Annelida.", options: ["Leech", "Centipede", "Roundworm", "Sea anemone"], answer: "Leech", takeaway: "Leeches are segmented worms, placing them in the phylum Annelida along with earthworms.", pollDistribution: [60, 15, 20, 5] },
+                { difficulty: "EASY", category: "Class", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "A Penguin is an excellent swimmer and spends most of its life hunting in the freezing ocean. To which class does it belong?", options: ["Pisces", "Mammalia", "Aves", "Amphibia"], answer: "Aves", takeaway: "Penguins are flightless aquatic birds with feathers, laying eggs like other members of Aves.", pollDistribution: [10, 25, 60, 5] },
+                { difficulty: "MODERATE", category: "Class", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "A Slow Worm slithers through the grass and has a long, cylindrical body. Which class does it belong to?", options: ["Annelida", "Reptilia", "Amphibia", "Nematoda"], answer: "Reptilia", takeaway: "The slow worm is not a worm or a snake, but a legless lizard (Reptilia).", pollDistribution: [35, 45, 5, 15] },
+                { difficulty: "MODERATE", category: "Phylum", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "________ belongs to Arthropoda[cite: 1]", options: ["King crab[cite: 1]", "Snail[cite: 1]", "Earth worm[cite: 1]", "snake[cite: 1]"], answer: "King crab[cite: 1]", takeaway: "Crabs have exoskeletons and jointed appendages, classifying them as Arthropods.", pollDistribution: [70, 15, 10, 5] },
+                { difficulty: "MODERATE", category: "Class", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "A Killer Whale is a massive apex predator that hunts in the ocean. Which class does it belong to?", options: ["Pisces", "Chondrichthyes", "Mammalia", "Reptilia"], answer: "Mammalia", takeaway: "Killer whales (Orcas) are actually the largest members of the dolphin family, which are marine mammals.", pollDistribution: [15, 15, 65, 5] },
+                { difficulty: "HARD", category: "Kingdom", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does a Sponge (found in the ocean) belong to?", options: ["Plantae", "Animalia", "Fungi", "Protista"], answer: "Animalia", takeaway: "Sponges are simple, multicellular organisms that fall under the animal kingdom (phylum Porifera).", pollDistribution: [35, 50, 5, 10] },
+                { difficulty: "HARD", category: "Phylum", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "A Sea Cucumber is found resting on the ocean floor. Which phylum does it belong to?", options: ["Plantae", "Porifera", "Echinodermata", "Annelida"], answer: "Echinodermata", takeaway: "Sea cucumbers share the same phylum as starfish and sea urchins, characterized by a water vascular system.", pollDistribution: [10, 20, 55, 15] }
             ],
             // SET 3
             [
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does a Mosquito belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Mosquitoes are insects, placing them in the phylum Arthropoda within the Animal kingdom.", pollDistribution: getPollDist(4) },
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does an Apple tree belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Apple trees are complex autotrophs capable of photosynthesis, belonging to Plantae.", pollDistribution: getPollDist(3) },
-                { difficulty: "VERY EASY", category: "Classification", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does Felis catus (Domestic cat) belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Domestic cats are eukaryotic, multicellular carnivores classified as animals.", pollDistribution: getPollDist(4) },
-                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does the bacteria found in curd (Lactobacillus) belong to?", options: kingdomOptions, answer: "Monera", takeaway: "Lactobacillus are simple prokaryotic organisms (bacteria) belonging to the kingdom Monera.", pollDistribution: getPollDist(0) },
-                { difficulty: "EASY", category: "Classification", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "Which kingdom does a Spider belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Spiders are arachnids, a class of joint-legged invertebrate animals.", pollDistribution: getPollDist(4) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does Penicillium (the mold used to make antibiotics) belong to?", options: kingdomOptions, answer: "Fungi", takeaway: "Penicillium is a genus of ascomycetous fungi of major importance in medicine.", pollDistribution: getPollDist(2) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does a Sponge (found in the ocean) belong to?", options: kingdomOptions, answer: "Animalia", takeaway: "Though they lack true tissues, sponges are basal animals belonging to the phylum Porifera.", pollDistribution: getPollDist(4) },
-                { difficulty: "MODERATE", category: "Classification", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "Which kingdom does a Pine tree belong to?", options: kingdomOptions, answer: "Plantae", takeaway: "Pine trees are gymnosperms (cone-bearing seed plants), which fall under Plantae.", pollDistribution: getPollDist(3) },
-                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom do Slime moulds belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Slime moulds share traits with both fungi and animals but are technically classified as Protists.", pollDistribution: getPollDist(1) },
-                { difficulty: "HARD", category: "Classification", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "Which kingdom does Plasmodium (the parasite that causes malaria) belong to?", options: kingdomOptions, answer: "Protista", takeaway: "Plasmodium is a unicellular eukaryotic parasite, classifying it as a protozoan in the Protista kingdom.", pollDistribution: getPollDist(1) }
+                { difficulty: "VERY EASY", category: "Kingdom", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "Which kingdom does Lactobacillus (the bacteria that sets curd) belong to?", options: ["Fungi", "Protista", "Monera", "Plantae"], answer: "Monera", takeaway: "Bacteria are single-celled prokaryotes that lack a true nucleus, falling under the Monera kingdom.", pollDistribution: [10, 5, 80, 5] },
+                { difficulty: "VERY EASY", category: "Phylum", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "A Sea Mouse is covered in thick bristles and lives on the muddy sea floor. Which phylum does it belong to?", options: ["Mammalia", "Arthropoda", "Annelida", "Mollusca"], answer: "Annelida", takeaway: "A sea mouse is actually a type of segmented marine worm, making it an Annelid.", pollDistribution: [15, 20, 55, 10] },
+                { difficulty: "VERY EASY", category: "Phylum", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", question: "______ belongs to Porifera.", options: ["Sycon", "Hydra", "Liver fluke", "Sea urchin"], answer: "Sycon", takeaway: "Sycon is a type of marine sponge, which belongs to the pore-bearing phylum Porifera.", pollDistribution: [75, 10, 5, 10] },
+                { difficulty: "EASY", category: "Phylum", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "A Cuttlefish swims through the ocean and uses ink to escape predators. Which phylum does it belong to?", options: ["Pisces", "Echinodermata", "Arthropoda", "Mollusca"], answer: "Mollusca", takeaway: "Cuttlefish are highly developed marine mollusks (cephalopods) possessing an internal shell.", pollDistribution: [20, 10, 15, 55] },
+                { difficulty: "EASY", category: "Class", color: "bg-teal-500/10 text-teal-400 border-teal-500/30", question: "A Water Dog has external gills and lives entirely underwater. Which class does it belong to?", options: ["Mammalia", "Pisces", "Amphibia", "Reptilia"], answer: "Amphibia", takeaway: "Water dogs (mudpuppies) are aquatic salamanders, which are amphibians.", pollDistribution: [10, 35, 50, 5] },
+                { difficulty: "MODERATE", category: "Phylum", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "______ belongs to Nematoda.", options: ["Tapeworm", "Ascaris (Roundworm)", "Earthworm", "Planaria"], answer: "Ascaris (Roundworm)", takeaway: "Ascaris is a parasitic roundworm, the defining group of the phylum Nematoda.", pollDistribution: [15, 60, 20, 5] },
+                { difficulty: "MODERATE", category: "Class", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "A Mudskipper spends much of its time out of the water, crawling on the mud. What class does it belong to?", options: ["Amphibia", "Reptilia", "Pisces", "Mammalia"], answer: "Pisces", takeaway: "Mudskippers are amphibious fish that have adapted to survive on mudflats, but are still true fish (Pisces).", pollDistribution: [40, 10, 45, 5] },
+                { difficulty: "MODERATE", category: "Kingdom", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30", question: "A Slime Mold slowly creeps across rotting logs in the forest. Which kingdom does it belong to?", options: ["Fungi", "Animalia", "Protista", "Monera"], answer: "Protista", takeaway: "Slime molds share traits with both fungi and amoebas, but are officially categorized as Protists.", pollDistribution: [45, 10, 40, 5] },
+                { difficulty: "HARD", category: "Phylum", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "A Sea Hare crawls along the ocean floor grazing on seaweed. Which phylum does it belong to?", options: ["Mammalia", "Arthropoda", "Annelida", "Mollusca"], answer: "Mollusca", takeaway: "A sea hare is a large marine gastropod (sea slug), classifying it as a mollusk.", pollDistribution: [5, 20, 25, 50] },
+                { difficulty: "HARD", category: "Phylum", color: "bg-purple-500/10 text-purple-400 border-purple-500/30", question: "______ belongs to Platyhelminthes (flatworms).", options: ["Tapeworm", "Earthworm", "Hookworm", "Silkworm"], answer: "Tapeworm", takeaway: "Tapeworms are parasitic flatworms that absorb nutrients directly through their skin.", pollDistribution: [60, 15, 15, 10] }
             ]
         ];
 
@@ -693,7 +684,7 @@
         const schoolName = "W W A Cossipore English School";
         let sessionHall = "Auditorium Hall";
         let isAnswerLocked = false;
-        let timerSeconds = 30;
+        let timerSeconds = 10;
         let timerId = null;
         let isTimerPaused = false;
         let isTimerActive = true;
@@ -805,7 +796,7 @@
             clearInterval(timerId);
             if (!isTimerActive) return;
 
-            timerSeconds = 30;
+            timerSeconds = 10;
             isTimerPaused = false;
             timerPauseBtn.textContent = '⏸';
             timerCountdown.textContent = `${timerSeconds}s`;
@@ -818,7 +809,7 @@
                 timerSeconds--;
                 timerCountdown.textContent = `${timerSeconds}s`;
 
-                if (timerSeconds <= 8) {
+                if (timerSeconds <= 4) {
                     timerCountdown.classList.remove('text-amber-300');
                     timerCountdown.classList.add('text-rose-400', 'animate-pulse');
                 }
@@ -868,7 +859,7 @@
             // Render Options
             const container = document.getElementById('optionsContainer');
             container.innerHTML = '';
-            const letters = ['A', 'B', 'C', 'D', 'E'];
+            const letters = ['A', 'B', 'C', 'D']; // Adjusted to 4 options
 
             q.options.forEach((optText, idx) => {
                 const btn = document.createElement('button');
@@ -953,7 +944,7 @@
             }
 
             const q = questions[currentQuestionIndex];
-            const letters = ['A', 'B', 'C', 'D', 'E'];
+            const letters = ['A', 'B', 'C', 'D'];
             pollBarsContainer.innerHTML = '';
 
             q.options.forEach((opt, idx) => {
@@ -986,8 +977,8 @@
             });
 
             wrongIndices.sort(() => Math.random() - 0.5);
-            // Since we have 5 options, hide 3 wrong options to leave 1 wrong and 1 correct
-            const toHide = wrongIndices.slice(0, 3); 
+            // Hide 2 wrong options out of 4 to leave exactly 1 wrong and 1 correct
+            const toHide = wrongIndices.slice(0, 2); 
 
             toHide.forEach(idx => {
                 const btn = document.getElementById(`opt-choice-${idx}`);
@@ -1053,7 +1044,7 @@
 
         function copyRecap() {
             sound.playClick();
-            const textToCopy = `🔬 BioSphere Quest Debrief\nPlayer: ${playerName}\nSchool: ${schoolName}\nDesigned by: Aritrika, Kausani, Hiya, Mahika, Parinita\nSession: ${sessionHall}\nScore: ${score}/10 (${Math.round((score/questions.length)*100)}% Accuracy)\nDistinction: ${document.getElementById('distinctionTier').textContent}\nTopic: Five Kingdom Classification.`;
+            const textToCopy = `🔬 BioSphere Quest Debrief\nPlayer: ${playerName}\nSchool: ${schoolName}\nDesigned by: Aritrika, Kaushani, Hiya, Mahika, Parinita\nSession: ${sessionHall}\nScore: ${score}/10 (${Math.round((score/questions.length)*100)}% Accuracy)\nDistinction: ${document.getElementById('distinctionTier').textContent}\nTopic: Classification & Phylum Quest.`;
 
             const dummy = document.createElement("textarea");
             document.body.appendChild(dummy);
@@ -1092,7 +1083,7 @@
             }, 240);
         }
 
-        // Keyboard navigation for seminar speakers (A/B/C/D/E or 1-5, Space/Enter to advance)
+        // Keyboard navigation for seminar speakers (A/B/C/D or 1-4, Space/Enter to advance)
         window.addEventListener('keydown', (e) => {
             if (quizScreen.classList.contains('hidden')) return;
 
@@ -1101,8 +1092,7 @@
                     'KeyA': 0, 'Digit1': 0,
                     'KeyB': 1, 'Digit2': 1,
                     'KeyC': 2, 'Digit3': 2,
-                    'KeyD': 3, 'Digit4': 3,
-                    'KeyE': 4, 'Digit5': 4
+                    'KeyD': 3, 'Digit4': 3
                 };
                 if (e.code in keyMap) {
                     const idx = keyMap[e.code];
